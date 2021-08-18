@@ -1,1 +1,1 @@
-# green-pass
+# booking-pass
