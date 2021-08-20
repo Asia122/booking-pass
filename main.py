@@ -16,11 +16,11 @@ parser = argparse.ArgumentParser(description='This program will' +
                                              ' check if in a given date you will have the green pass ')
 #la descrizione va fatta meglio
 group = parser.add_mutually_exclusive_group()
-parser.add_argument("name", help="input the fiscal code o a person")
+parser.add_argument("name", help="input the fiscal code of a person")
 
 # -d per far uscire tutto il dataset
 group.add_argument("-d", "--database", action="store_true",
-                   help="add a new")
+                   help="add a new person")
 
 group.add_argument("-a", "--add", action="store_true",
                    help="add a new vaccinated or to be vaccinated person to the database")

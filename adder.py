@@ -3,12 +3,11 @@ The adder module has a single
 function with the purpose
 of let doctors appending inside the dataset
 the personal information and date of vaccination 
-of new people
+of new people.
 
 The input will be checked to
 see if it is already inside the
 database.
-
 
 It is necessary for the user to
 input a string that is not empty."
@@ -22,9 +21,7 @@ from checker import Check
 def add_element(nperson, response=""):
 
     """
-    This function comes into play once the user inputs a new perons 
-    is not inside the database, or when, after
-    the input, the user writes the optional argument -a
+    This function comes into play once the doctor writes the optional argument -a
     and proceeds to add the personal information and vaccination date.
     """
     db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
@@ -59,5 +56,5 @@ def add_element(nperson, response=""):
             row = len(db)
             peopledata.write("\n")
             newpeopledata.writerow([row,nperson, name, surname, birthday, birthplace, firstdose])
-        return print("Thank you for your contribution!")
+        return print("you succeffully registered",name, surname, "vaccination date!")
         
