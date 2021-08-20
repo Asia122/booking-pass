@@ -33,23 +33,23 @@ def add_element(nperson, response=""):
         name = input("Please enter the name -> ")
         while(name == ""):
             name = input("You can't enter nothing... " +
-                          "so please... put anything -> ")
+                          "so please... put the name -> ")
         surname = input("Please enter the surname -> ")
         while(surname == ""):
             surname = input("You can't enter nothing... " +
-                            "so please... put anything -> ")
+                            "so please... the surname -> ")
         birthday = input("Please enter the birthday -> ")
         while(birthday == ""):
             birthday = input("You can't enter nothing... " +
-                            "so please... put anything -> ")   
-        birthplace = input("Please enter the birth date gg/mm/yyyy -> ")
+                            "so please... put the birthday -> ")   
+        birthplace = input("Please enter the birth place -> ")
         while(birthplace == ""):
             birthplace = input("You can't enter nothing... " +
-                            "so please... put anything -> ")
+                            "so please... put the birth place -> ")
         firstdose = input("Please enter the firt dose date gg/mm/yyyy -> ")
         while(firstdose == ""):
             firstdose = input("You can't enter nothing... " +
-                            "so please... put anything -> ") 
+                            "so please... put the firt dose date -> ") 
                     
         with open('people_vaccinated.csv', 'a') as peopledata:
             newpeopledata = csv.writer(peopledata)
