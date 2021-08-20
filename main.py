@@ -5,6 +5,8 @@
 
 import argparse
 import pandas as pd
+from adder import add_element
+from checker import Check
 
 db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
 
@@ -19,6 +21,10 @@ parser.add_argument("name", help="input the fiscal code o a person")
 # -d per far uscire tutto il dataset
 group.add_argument("-d", "--database", action="store_true",
                    help="add a new")
+
+group.add_argument("-a", "--add", action="store_true",
+                   help="add a new vaccinated or to be vaccinated person to the database")
+
 args = parser.parse_args()
 answer = args.name
 
@@ -26,15 +32,14 @@ if args.database:
     print("Now you can see by yourself if " +
           answer + " fiscal code is present in our database manually")
     print(db)
-    
-print(db["Codice Fiscale"].loc[db["Codice Fiscale"].str.lower() == answer.lower()]
-              .values[0], "is the fiscal code of",
-              db["Nome"].loc[db["Codice Fiscale"].str.lower() ==
-              answer.lower()].values[0],
-              db["Cognome"].loc[db["Codice Fiscale"].str.lower() ==
-              answer.lower()].values[0], "whose first dose date is on",
-              db["Data prima dose"].loc[db["Codice Fiscale"].str.lower() ==
-              answer.lower()].values[0])
+if args.add:
+        add_element(answer)
+else:
+    print(db["Codice Fiscale"].loc[db["Codice Fiscale"].str.lower() == answer.lower()].values[0], "is the fiscal code of",     db["Nome"].loc[db["Codice Fiscale"].str.lower() == answer.lower()].values[0],
+    db["Cognome"].loc[db["Codice Fiscale"].str.lower() ==
+    answer.lower()].values[0], "whose first dose date is on",
+    db["Data prima dose"].loc[db["Codice Fiscale"].str.lower() ==
+    answer.lower()].values[0])
 
 
 
