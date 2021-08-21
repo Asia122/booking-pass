@@ -12,7 +12,8 @@ def check_avaiability():
             print('september',df.September[i],'is avaible')
             # the output is a print for now, but I can easly change it to output the index
             # of the column 
-            break
+            return i
+           
 
 
 def book(i):
