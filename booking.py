@@ -13,3 +13,15 @@ def check_avaiability():
             # the output is a print for now, but I can easly change it to output the index
             # of the column 
             break
+
+
+def book(i):
+
+# this function wants an index and at that indez changes the value in column 
+# booking to 1 to create the appointment
+    
+    df = pd.DataFrame(pd.read_csv('calendar.csv'))
+    df.bookings[i]=1
+    print('you have booked for semptember',df.September[i])
+    df.to_csv('calendar.csv',index=False)
+    
