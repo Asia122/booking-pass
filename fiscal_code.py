@@ -33,3 +33,49 @@ def GetSurnameLetters(surname):
             stillVowels = False
         
     return result
+
+
+def GetNameLetters(name):
+    name = name.upper()
+    result = ""
+    vowels = "AEIOU"
+    consonants = "BCDFGHJKLMNPQRSTVWXYZ"
+    toAnalyze = 0
+    stillConsonants = True
+    stillVowels = True
+
+    while len(result) < 4:
+        if stillConsonants:
+            if name[toAnalyze] in consonants:
+                result += name[toAnalyze]
+        elif stillVowels:
+            if name[toAnalyze] in vowels:
+                    result += name[toAnalyze]
+            else:
+                result += "X"
+
+        if toAnalyze + 1 != len(name):
+            toAnalyze += 1
+        elif toAnalyze + 1 == len(name) and stillConsonants:
+            toAnalyze = 0
+            stillConsonants = False
+        else:
+            stillVowels = False
+
+    if ConsonantsCounter(name) > 3:
+        result = result[0] + result[2:4]   
+    else:
+        result = result[:3]
+      
+    return result
+
+
+def ConsonantsCounter(word):
+    consonants = "BCDFGHJKLMNPQRSTVWXYZ"
+    result = 0
+
+    for x in word.upper():
+        if x in consonants:
+            result += 1
+    
+    return result
