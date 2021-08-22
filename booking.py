@@ -7,6 +7,9 @@ def check_avaiability():
 
     df = pd.DataFrame(pd.read_csv('calendar.csv'))
     lis = df.bookings == 0
+    if not any(lis):
+        print('Im sorry there is no avaible date in september' )
+        return 42
     for i, s in enumerate(lis.values):
         if s:
             print('september', df.September[i], 'is avaible')
@@ -20,8 +23,10 @@ def check_avaiability():
 
 
 def book(i):
-    # this function wants an index and at that index changes the value in column
+    # this function wants an index and at that indez changes the value in column
     # booking to 1 to create the appointment
+    if i==42:
+        return None
 
     df = pd.DataFrame(pd.read_csv('calendar.csv'))
     df.bookings[i] = 1
