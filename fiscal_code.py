@@ -79,3 +79,15 @@ def ConsonantsCounter(word):
             result += 1
     
     return result
+
+
+def GetBirthData(dob, gender):
+    year = dob[-2:]
+    monthLetter = ["A", "B", "C", "E", "H", "M", "N", "O", "P", "R", "S", "T"]
+    month = int(dob[3:5])
+    day = int(dob[:2])
+
+    if gender == "F":
+        day += 40
+
+    return year + monthLetter[month - 1] + str(day)
