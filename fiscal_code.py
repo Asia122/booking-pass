@@ -100,6 +100,3 @@ def GetPlaceData(pob):
     codes = pd.read_csv("registry_codes.csv")
     
     return codes.loc[codes["Place"] == pob]["Code"].to_string()[-4:]
-
-
-print(GetPlaceData("Pordenone"))
