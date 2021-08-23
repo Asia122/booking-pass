@@ -91,3 +91,15 @@ def GetBirthData(dob, gender):
         day += 40
 
     return year + monthLetter[month - 1] + str(day)
+
+
+def GetPlaceData(pob): 
+    import pandas as pd 
+
+    pob = pob.lower() 
+    codes = pd.read_csv("registry_codes.csv")
+    
+    return codes.loc[codes["Place"] == pob]["Code"].to_string()[-4:]
+
+
+print(GetPlaceData("Pordenone"))
