@@ -125,7 +125,3 @@ def GetControlChar(initialFiscalCode):
     remainder = sumChars % 26
     
     return remainderDict[remainder]
-
-
-
-print(FiscalCodeCalculator("Asia", "Martini", "12/02/1999", "F", "Conegliano") == "MRTSAI99B52C957F", FiscalCodeCalculator("Asia", "Martini", "12/02/1999", "F", "Conegliano"))
