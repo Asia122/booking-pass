@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 ,Codice Fiscale,Nome,Cognome,Data Nascita,Luogo Nascita,Data prima dose
 1,CSNNCL00H51A703P,Nicole,Cusinato,11/06/2000,Bassano del Grappa,28/06/2021
 2,TRBRCR00L30L407M,Riccardo,Trabucco,30/07/2000,Treviso,09/08/2021
 3,MRTSAI99B52C957F,Asia,Martini,12/02/1999,Conegliano,03/07/2021
 4,RCCNDR00T29G888M,Andrea,Rocco,29/12/2000,Pordenone,17/09/2021
 5,PRVLRD00R21F839H,Leonardo,Provenzano,21/10/2000,Napoli,29/05/2021
+=======
+Fiscal Code,Name,Surname,Gender,Date of Birth,Place of Birth,Date First Shot
+CSNNCL00H51A703P,Nicole,Cusinato,F,11/06/2000,Bassano del Grappa,28/06/2021
+TRBRCR00L30L407M,Riccardo,Trabucco,M,30/07/2000,Treviso,09/08/2021
+MRTSAI99B52C957F,Asia,Martini,F,12/02/1999,Conegliano,03/07/2021
+RCCNDR00T29G888M,Andrea,Rocco,M,29/12/2000,Pordenone,17/09/2021
+PRVLRD00R21F839H,Leonardo,Provenzano,M,21/10/2000,Napoli,29/05/2021
+>>>>>>> 01376c8708b40af162390b454e2eb68458d3d06d
