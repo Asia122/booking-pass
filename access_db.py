@@ -3,24 +3,6 @@ import hashlib
 import argparse
 
 
-# example of a simple password database with Python and SQLite.
-#  - Prepared statements to avoid vulnerable SQL injection
-#  - hashed passwords
-
-
-# add a username
-# python access_db.py -a RickyTrabu -p Wudy -r medico
-# python access_db.py -a Nicole00 -p Lab2021 -r admin
-# python access_db.py -a AndreaRocco -p DataAnalyticsMaster -r restaurant
-# python access_db.py -a LeoProve -p ConquiQuarto -r medico
-
-# check if it exists and its role
-# python access_db.py -c Nicole00 -p Lab2021
-# python access_db.py -c pippo -p differentpwd  # will not work!
-
-with sqlite3.connect("db_password.db")as conn:
-    cursor = conn.cursor()
-
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', help="add a usernamename (requires -p)",
@@ -50,6 +32,8 @@ def save_new_username_correct(username, password, role):
                    (username, role))
     conn.commit()
 
+    conn.close()
+
 
 def check_for_username_correct(username, password):
     with sqlite3.connect("db_password.db")as conn:
@@ -69,8 +53,9 @@ def check_for_username_correct(username, password):
                            (results[0][0],))
         #return the role of the user
         return b
-    else:
-        print("User is not present, or password is invalid")
+
+    conn.close()
+    
 
 
 def print_all_users():
@@ -84,6 +69,8 @@ def print_all_users():
     print("Users:")
     for row in results:
         print(row[0])
+    
+    conn.close()
 
 
 
