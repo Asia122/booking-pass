@@ -4,7 +4,7 @@ if the user is present in the csv file people_vaccinated.
 In this way, it is possible to say if the user
 has the GreenPass or not.
 The user will have the GreenPass after 15 days from
-the day of the vaccination (starting from the 15th day).
+the day of the vaccination (included the 15th day).
 This information is accessible only to the restaurateur.
 In order to do that, it is used the function CheckGreenPass().
 """
@@ -36,6 +36,9 @@ def CheckGreenPass(nperson):
     if Check().check_fiscalcode(nperson):
         for row in db_datetime:
             end_date = row + timedelta(days=15)
+            # if row + 15 days = today --> YES green pass
+            # if row + 15 days < today --> YES green pass
+            # if row + 15 days > today --> NO green pass
             
             if end_date >= today:
                 return nperson + "doesn't have the Green Pass yet."
