@@ -1,10 +1,21 @@
 import csv
 import pandas as pd
-from datetime import timedelta, date
+from checker import Check   
+from datetime import date
+# datetime moudule supplies classes for manipulating dates
 
 nperson = input()
+# nperson is the fiscal code of the user
+
 def CheckGreenPass(nperson):
-    
+    """
+    For the CheckGreenPass function:
+    We consider the Green Pass valid the day after the vaccination.
+    Since df['Date First Shot'] is a pandas.core.series.Series,
+    we need to transform the column's entries in datetime.
+    In order to do that, we need to apply the function pd.to_datetime.
+    """
+
     today = date.today()
     # return the current local date
     
@@ -22,5 +33,5 @@ def CheckGreenPass(nperson):
                 return nperson + " " + "has the Green Pass."
     
     else:
-        return "Sorry, but " + nperson + " hasn't the green pass. "
+        return "Sorry, but " + nperson + "doesn't even have the reservation for the vaccination."
     
