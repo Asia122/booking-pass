@@ -1,34 +1,43 @@
+import datetime
 import pandas as pd
 
-
-def check_avaiability():
-    # this function looks if in the column bookings and see if there are some 0 values
-    # if there are 0 values means that that place is avaible to book a vaccine
-
-    df = pd.DataFrame(pd.read_csv('calendar.csv'))
-    lis = df.bookings == 0
-    if not any(lis):
-        print('Im sorry there is no avaible date in september' )
-        return 42
-    for i, s in enumerate(lis.values):
-        if s:
-            print('september', df.September[i], 'is avaible')
-            # the output is a print and returns the index
-            print('Do you want to book this date? (please enter yes/no)')
-            answer = input()
-            if answer == 'yes':
-                return i
-            else:
-                continue
+y = 2021  # int(input('inserisci anno'))
+m = 8  # int(input('inserisci mese'))
+d = 30  # int(input('inserisci giorno'))
 
 
-def book(i):
-    # this function wants an index and at that indez changes the value in column
-    # booking to 1 to create the appointment
-    if i==42:
-        return None
+def make_appointment(y, m, d):
+    booking = datetime.date(y, m, d)
 
-    df = pd.DataFrame(pd.read_csv('calendar.csv'))
-    df.bookings[i] = 1
-    print('you have booked for semptember', df.September[i])
-    df.to_csv('calendar.csv', index=False)
+    df = pd.DataFrame(pd.read_csv('cal.csv'))
+    now = datetime.date.today()
+    lis_reader = []
+
+    if y < now.year:
+        print('you cannot select previous years')
+        return 1
+    elif m < now.month:
+        print('you cannot select previous month')
+        return 1
+    elif d < now.day:
+        print('you cannot select previous days')  ## checking for previous date
+        return 1
+    elif y == now.year and m == now.month and d == now.day:  # checking for current date
+        print('you cannot select current date')
+        return 1
+    else:
+        for i in df.appointment:
+            time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
+            lis_reader.append(time_reader)
+
+        for i in lis_reader:
+            if y == i.year and m == i.month and d == i.day:  # checking for already selected date
+                print('you cannot select this date')
+                return 1
+
+        else:
+            df2 = pd.DataFrame({'appointment': [str(booking)]})
+            df = df.append(df2, ignore_index=True)
+
+            df.to_csv('cal.csv', index=False)
+            print('you have booked')
