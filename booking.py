@@ -1,4 +1,5 @@
 import datetime
+import calendar
 import pandas as pd
 
 y = 2021  # int(input('inserisci anno'))
@@ -41,3 +42,50 @@ def make_appointment(y, m, d):
 
             df.to_csv('cal.csv', index=False)
             print('you have booked')
+
+
+def avaiability_days(year, month):
+    df = pd.DataFrame(pd.read_csv('cal.csv'))
+    lis_reader = []
+    all_current_month_booked_days = []
+
+    cal = calendar.Calendar()
+    all_days = cal.monthdayscalendar(year, month)
+    all_days_clean = []
+
+    for row in all_days:
+        for i in row:
+            if i != 0:
+                all_days_clean.append(i)  # all the days in month given in input to the function
+
+    for i in df.appointment:
+        time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
+        lis_reader.append(time_reader)  # creates a list of datetime object of all the booked date
+
+    for i in lis_reader:
+        if i.month == month:
+            all_current_month_booked_days.append(i.day)  # list of all the  month booked days
+
+    all_current_month_booked_days.sort()
+
+    for booked_day in all_current_month_booked_days:
+        if booked_day in all_days_clean:
+            all_days_clean.remove(booked_day)
+
+    if all_days_clean == []:
+        return 42
+    return all_days_clean
+
+
+def avaiability_entire_year(year, month):
+    control = avaiability_days(year,
+                               month)  ### completare la funzione tenendo in conto la situa di quando tutti i mesi sono booked e quindi cambi anno
+
+    while control == 1:
+        month = month + 1
+        control = avaiability_days(year, month)
+
+        if month == 12 and control == 1:
+            return 42
+            break
+    return month, avaiability(year, month)
