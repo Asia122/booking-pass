@@ -1,13 +1,20 @@
 """
 The module checker_greenpass.py focuses on checking
-if the user is present in the csv file people_vaccinated.
-In this way, it is possible to say if the user
-has the GreenPass or not.
-The user will have the GreenPass after 15 days from
-the day of the vaccination (included the 15th day).
+if the user has the GreenPass or not.
+In order to establish it, the date of the vaccination
+must be checked. If 15 days are passed from that date,
+(including the 15th day) the user has the GreenPass, otherwise not.
 This information is accessible only to the restaurateur.
 In order to do that, it is used the function CheckGreenPass().
 """
+
+"""
+First of all, it has to be checked if the user
+is present in the csv file people_vaccinated.
+If not, it means it doesn't even have the reservation
+for the vaccination.
+"""
+
 
 import csv
 import pandas as pd
@@ -20,11 +27,6 @@ nperson = input()
 # nperson = fiscal code of the user
 
 def CheckGreenPass(nperson):
-    """
-    Since df['Date First Shot'] is a pandas.core.series.Series,
-    the column's entries have to be transformed in datetime.
-    In order to do that, the function pd.to_datetime is applied.
-    """
 
     today = date.today()
     # return the current local date
@@ -37,6 +39,10 @@ def CheckGreenPass(nperson):
         nperson_date = nperson_date.to_string()
         nperson_date = nperson_date[-10:]
         nperson_date = datetime.strptime(nperson_date,"%d/%m/%Y").date()
+        """
+        Since the column df["Date First Shot"] is a pandas.core.series.Series,
+        the column's entries have to be transformed in datetime.
+        """
         
         end_date = nperson_date + timedelta(days=15)
         # green pass is valid after 15 days from the vaccination day
