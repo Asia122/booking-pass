@@ -12,12 +12,12 @@ In order to do that, it is used the function CheckGreenPass().
 import csv
 import pandas as pd
 from checker import Check   
-from datetime import date
+from datetime import date, timedelta
 # datetime moudule supplies classes for manipulating dates
 
 
 nperson = input()
-# nperson is the fiscal code of the user
+# nperson = fiscal code of the user
 
 def CheckGreenPass(nperson):
     """
@@ -29,22 +29,24 @@ def CheckGreenPass(nperson):
     today = date.today()
     # return the current local date
     
-    db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
-    db_datetime = pd.to_datetime(db["Date First Shot"])
-    # pd.to_datetime converts argument to datetime
-    
     if Check().check_fiscalcode(nperson):
-        for row in db_datetime:
-            end_date = row + timedelta(days=15)
-            # if row + 15 days = today --> YES green pass
-            # if row + 15 days < today --> YES green pass
-            # if row + 15 days > today --> NO green pass
+        
+        df = pd.DataFrame(pd.read_csv("people_vaccinated.csv"))
+        
+        nperson_date = df.loc[df["Fiscal Code"] == nperson,"Date First Shot"]        
+        nperson_date = nperson_date.to_string()
+        nperson_date = nperson_date[-10:]
+        nperson_date = datetime.strptime(nperson_date,"%d/%m/%Y").date()
+        
+        end_date = nperson_date + timedelta(days=15)
+        # green pass is valid after 15 days from the vaccination day
             
-            if end_date >= today:
-                return nperson + "doesn't have the Green Pass yet."
-            else:
-                return nperson + " " + "has the Green Pass."
+        if end_date > today:
+            return nperson + " " + "doesn't have the Green Pass yet."
+        else:
+            return nperson + " " + "has the Green Pass."
     
     else:
-        return "Sorry, but " + nperson + "doesn't even have the reservation for the vaccination."
+        return "Sorry, but " + nperson + " " + "doesn't even have the reservation for the vaccination."
+    
     
