@@ -49,6 +49,12 @@ def CheckGreenPass(nperson):
         
         end_date = nperson_date + timedelta(days=15)
         # green pass is valid after 15 days from the vaccination day
+        
+        """
+        if nperson_date + 15 days = today --> YES GreenPass
+        if nperson_date + 15 days < today --> YES GreenPass
+        if nperson_date + 15 days > today --> NO GreenPass
+        """
             
         if end_date > today:
             return nperson + " " + "doesn't have the Green Pass yet."
@@ -57,4 +63,4 @@ def CheckGreenPass(nperson):
     
     else:
         return "Sorry, but " + nperson + " " + "doesn't even have the reservation for the vaccination."
-    
+   
