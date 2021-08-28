@@ -16,7 +16,7 @@ class Check:
         """
         fiscalcode = fiscalcode.lower()
         db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
-        fcodes = db["Codice Fiscale"].str.lower()
+        fcodes = db["Fiscal Code"].str.lower()
         if fiscalcode in fcodes.values:
             return True
         return False
