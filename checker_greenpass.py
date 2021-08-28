@@ -2,10 +2,10 @@
 The module checker_greenpass.py focuses on checking
 if the user has the GreenPass or not.
 In order to establish it, the date of the vaccination
-must be checked. If 15 days are passed from that date,
+must be checked. If 15 days have passed from that date,
 (including the 15th day) the user has the GreenPass, otherwise not.
 This information is accessible only to the restaurateur.
-In order to do that, it is used the function CheckGreenPass().
+In order to do that, the function CheckGreenPass() is used.
 """
 
 """
@@ -29,16 +29,19 @@ nperson = input()
 def CheckGreenPass(nperson):
 
     today = date.today()
-    # return the current local date
+    # return the current local date (without the time)
     
     if Check().check_fiscalcode(nperson):
         
         df = pd.DataFrame(pd.read_csv("people_vaccinated.csv"))
         
-        nperson_date = df.loc[df["Fiscal Code"] == nperson,"Date First Shot"]        
+        nperson_date = df.loc[df["Fiscal Code"] == nperson,"Date First Shot"]
+        # to select the corresponding date of vaccination given the fiscal code of the user
+        
         nperson_date = nperson_date.to_string()
         nperson_date = nperson_date[-10:]
         nperson_date = datetime.strptime(nperson_date,"%d/%m/%Y").date()
+        
         """
         Since the column df["Date First Shot"] is a pandas.core.series.Series,
         the column's entries have to be transformed in datetime.
@@ -54,5 +57,4 @@ def CheckGreenPass(nperson):
     
     else:
         return "Sorry, but " + nperson + " " + "doesn't even have the reservation for the vaccination."
-    
     
