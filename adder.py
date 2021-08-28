@@ -16,6 +16,7 @@ input a string that is not empty."
 import csv
 import pandas as pd
 from checker import Check
+from fiscal_code import FiscalCodeCalculator
 
 
 def add_element(nperson, response=""):
@@ -34,6 +35,7 @@ def add_element(nperson, response=""):
         while(name == ""):
             name = input("You can't enter nothing... " +
                           "so please... put the name -> ")
+            
         surname = input("Please enter the surname -> ")
         while(surname == ""):
             surname = input("You can't enter nothing... " +
@@ -44,24 +46,27 @@ def add_element(nperson, response=""):
             gender = input("You can't enter nothing... " +
                             "so please... the gender: M or F -> ")
             
-        birthday = input("Please enter the birthday -> ")
+        birthday = input("Please enter the birthday gg/mm/yyyy-> ")
         while(birthday == ""):
             birthday = input("You can't enter nothing... " +
-                            "so please... put the birthday -> ")   
+                            "so please... put the birthday gg/mm/yyyy-> ")
+            
         birthplace = input("Please enter the birth place -> ")
         while(birthplace == ""):
             birthplace = input("You can't enter nothing... " +
                             "so please... put the birth place -> ")
+            
         firstdose = input("Please enter the firt dose date gg/mm/yyyy -> ")
         while(firstdose == ""):
             firstdose = input("You can't enter nothing... " +
                             "so please... put the firt dose date -> ")
-        fiscalcode=666
+            
+        fiscalcode= FiscalCodeCalculator(name, surname, birthday, gender, birthplace)
                     
         with open('people_vaccinated.csv', 'a') as peopledata:
             newpeopledata = csv.writer(peopledata)
             row = len(db)
-            peopledata.write("\n")
+            #peopledata.write("\n")
             newpeopledata.writerow([fiscalcode, name, surname,gender, birthday, birthplace, firstdose])
         return print("you succeffully registered",name, surname, "'s vaccination date!")
 

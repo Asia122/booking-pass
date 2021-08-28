@@ -11,6 +11,8 @@ import sqlite3
 import hashlib
 import argparse
 from access_db import parse_args, save_new_username_correct, check_for_username_correct, print_all_users, vaccinated_people, print_info
+from fiscal_code import FiscalCodeCalculator
+
 
 args = parse_args()
 db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
