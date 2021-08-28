@@ -35,10 +35,11 @@ if args.database:
 if args.add:
         add_element(answer)
 else:
-    print(db["Codice Fiscale"].loc[db["Codice Fiscale"].str.lower() == answer.lower()].values[0], "is the fiscal code of",     db["Nome"].loc[db["Codice Fiscale"].str.lower() == answer.lower()].values[0],
-    db["Cognome"].loc[db["Codice Fiscale"].str.lower() ==
+    print(db["Fiscal Code"].loc[db["Fiscal Code"].str.lower() == answer.lower()].values[0], "is the fiscal code of",
+    db["Name"].loc[db["Fiscal Code"].str.lower() == answer.lower()].values[0],
+    db["Surname"].loc[db["Fiscal Code"].str.lower() ==
     answer.lower()].values[0], "whose first dose date is on",
-    db["Data prima dose"].loc[db["Codice Fiscale"].str.lower() ==
+    db["Date First Shot"].loc[db["Fiscal Code"].str.lower() ==
     answer.lower()].values[0])
 
 
