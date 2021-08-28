@@ -38,6 +38,12 @@ def add_element(nperson, response=""):
         while(surname == ""):
             surname = input("You can't enter nothing... " +
                             "so please... the surname -> ")
+            
+        gender = input("Please enter your gender: M or F -> ")
+        while(gender == ""):
+            gender = input("You can't enter nothing... " +
+                            "so please... the gender: M or F -> ")
+            
         birthday = input("Please enter the birthday -> ")
         while(birthday == ""):
             birthday = input("You can't enter nothing... " +
@@ -49,12 +55,18 @@ def add_element(nperson, response=""):
         firstdose = input("Please enter the firt dose date gg/mm/yyyy -> ")
         while(firstdose == ""):
             firstdose = input("You can't enter nothing... " +
-                            "so please... put the firt dose date -> ") 
+                            "so please... put the firt dose date -> ")
+        fiscalcode=666
                     
         with open('people_vaccinated.csv', 'a') as peopledata:
             newpeopledata = csv.writer(peopledata)
             row = len(db)
             peopledata.write("\n")
-            newpeopledata.writerow([row,nperson, name, surname, birthday, birthplace, firstdose])
-        return print("you succeffully registered",name, surname, "vaccination date!")
+            newpeopledata.writerow([fiscalcode, name, surname,gender, birthday, birthplace, firstdose])
+        return print("you succeffully registered",name, surname, "'s vaccination date!")
+
+
+    
+    
+    
         

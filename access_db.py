@@ -1,7 +1,10 @@
 import sqlite3
 import hashlib
 import argparse
+import pandas as pd
 
+
+db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -15,6 +18,12 @@ def parse_args():
                                    "(requires -p)", required=False)
     parser.add_argument('-l', help="list all users", action='store_true',
                         required=False)
+    parser.add_argument('-d', help="list vaccinated people", action='store_true',
+                        required=False)
+    parser.add_argument('-f', help="personal information", action='store_true',
+                        required=False)
+    
+    
     return parser.parse_args()
 
 
@@ -71,6 +80,18 @@ def print_all_users():
         print(row[0])
     
     conn.close()
+
+def vaccinated_people(db):
+    print("Now you can see by yourself if fiscal code is present in our database manually")
+    print(db)
+
+def print_info(answer):
+    print(db["Fiscal Code"].loc[db["Fiscal Code"].str.lower() == answer.lower()].values[0], "is the fiscal code of",
+    db["Name"].loc[db["Fiscal Code"].str.lower() == answer.lower()].values[0],
+    db["Surname"].loc[db["Fiscal Code"].str.lower() ==
+    answer.lower()].values[0], "whose first dose date is on",
+    db["Date First Shot"].loc[db["Fiscal Code"].str.lower() ==
+    answer.lower()].values[0])
 
 
 

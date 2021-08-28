@@ -7,7 +7,8 @@ from access_db import parse_args, save_new_username_correct, check_for_username_
 args = parse_args()
 
 if args.c and args.p:
-    ex = check_for_username_correct(args.c, args.p) # check if the username is present, the password is correct and get the role
+    ex = check_for_username_correct(args.c, args.p) # check if the username is present,
+    #the password is correct and get the role
 
     if ex is not None:
         u_role = ex.fetchall()[0][0]
@@ -20,7 +21,8 @@ if args.c and args.p:
                 p = input("Tell me the password: ")
                 r = input("Tell me the role (admin, doctor or restaurant): ")
                 if r == "admin" or r == "doctor" or r == "restaurant":
-                    save_new_username_correct(n, p, r) # use the function save_new_username_correct to insert a new user in the database or modify an old one
+                    save_new_username_correct(n, p, r) # use the function save_new_username_correct
+                    #to insert a new user in the database or modify an old one
                 else:
                     print ("Role not valid")
 
