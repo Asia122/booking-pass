@@ -3,68 +3,13 @@ import datetime
 import pandas as pd
 
 '''
-This module enables to book an appointment for a ... 
-and to check the available dates to book
+This module provides with functions that, working together, enables to choose and return
+a suitable date for the vaccination.
+There are 3 functions that are then grouped by calling the select_date function.
 '''
 
 
-
-def make_appointment(y, m, d):
-    '''
-    This function takes as input the year,the month and the day, and tries to book
-    an appointment for that date, if that date is not available for any reason it will return 1.
-    If the date is available then it will modify the csv and add the selected date in the column appointment
-    '''
-
-    booking = datetime.date(y, m, d)
-
-    df = pd.DataFrame(pd.read_csv('cal.csv'))
-    now = datetime.date.today()
-    lis_reader = []
-    counter=0
-
-    #checking for previous date
-    if y < now.year:
-        print('you cannot select previous years')
-        return 1
-    elif m < now.month:
-        print('you cannot select previous month')
-        return 1
-    elif d < now.day:
-        print('you cannot select previous days')
-        return 1
-    # checking for current date
-    elif y == now.year and m == now.month and d == now.day:
-        print('you cannot select current date')
-        return 1
-    else:
-        for i in df.appointment:
-            time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
-            # read the row and append datetime objects to a lis_reader
-            lis_reader.append(time_reader)
-
-        for i in lis_reader:
-            # counts how many time the inputted date is present in the csv
-            if y == i.year and m == i.month and d == i.day:
-                counter=counter+1
-
-        # checks to count the maximum of 3 bookings
-        if counter == 3:
-            print('you cannot select this date')
-            return 1
-
-
-
-        else:
-            # if all checks are false then you can add the date to csv
-            df2 = pd.DataFrame({'appointment': [str(booking)]})
-            df = df.append(df2, ignore_index=True)
-
-            df.to_csv('cal.csv', index=False)
-            print('you have booked')
-
-def avaiability_days(y, m):
-
+def availability_days(y, m):
     '''
     This function takes a year and a month as input and returns the available days
     of that month. It takes in to account up to 3 people booking the same date.
@@ -74,11 +19,12 @@ def avaiability_days(y, m):
     df = pd.DataFrame(pd.read_csv('cal.csv'))
     lis_reader = []
     all_current_month_booked_days = []
-    now=datetime.date.today()
+    now = datetime.date.today()
     cal = calendar.Calendar()
     all_days = cal.monthdayscalendar(y, m)
     all_days_clean = []
-
+    # this cycle will create a list (all_days_clean) of all the days
+    # in the month given in input to the function
     for row in all_days:
         for i in row:
             if i != 0:
@@ -86,7 +32,7 @@ def avaiability_days(y, m):
                 all_days_clean.append(i)
 
     for i in df.appointment:
-        time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
+        time_reader = datetime.datetime.strptime(i, '%d/%m/%Y')
         #  creates a list of datetime objects of all the booked dates
         lis_reader.append(time_reader)
 
@@ -97,8 +43,6 @@ def avaiability_days(y, m):
 
     all_current_month_booked_days.sort()
 
-
-
     for booked_day in all_current_month_booked_days:
         counter = [i for i, day in enumerate(all_current_month_booked_days) if day == booked_day]
         if booked_day in all_days_clean and len(counter) >= 3:
@@ -107,7 +51,7 @@ def avaiability_days(y, m):
 
     # consider also current date, so to delete passed days to the availability
     if m == now.month:
-        for day in range(1,now.day+1):
+        for day in range(1, now.day + 1):
             # here check for passed fully booked days (3 times booked days)
             if day not in all_days_clean:
                 continue
@@ -118,26 +62,117 @@ def avaiability_days(y, m):
     return all_days_clean
 
 
-def avaiability_entire_year(year, month):
-
+def availability_entire_year():
     '''
-    This function takes a year and a month as input and checks the next available date
-    that are the closest to that month. If all the months are booked returns 42
+    This function, through the usage of availability_days,
+    checks the next available dates
+    that are the closest to the current day
+    and returns the available dates up to 2 months.
+    If all the months are booked returns 42
     '''
+    now = datetime.date.today()
+    year = now.year
+    month = now.month
+    # recall of availability_days
+    control = availability_days(year, month)
 
-    control = avaiability_days(year,month)
-
+    # this cycle is needed to check what months are fully booked
     while control == 42:
         month = month + 1
 
-        control = avaiability_days(year, month)
+        control = availability_days(year, month)
 
         if month == 12 and control == 42:
             # if True means that while iterated for all the month up to december
             # and that december is fully booked hence the entire year is booked
             return 42
-            break
 
-    return month, avaiability_days(year, month)
+    # list of the available days of the current/next not fully booked month
+    availability_1 = availability_days(year, month)
+    if month + 1 <= 12:
+        # this if statement does not enable to create availability_2 as it's not needed.
+        # If True will cause errors and problems with the other code
+        # list of the available days of the month after the ones we are analyzing
+        availability_2 = availability_days(year, month + 1)
+    else:
+        availability_2 = 42
 
-print(avaiability_days(2021,8))
+    if availability_2 == 42 or month == 12:
+        # if the next month is fully booked or the month we are analyzing is september
+        # return only the availability of the month we are analyzing
+        days_available_1 = [datetime.date(year, month, day) for day in availability_1]
+
+        return days_available_1
+    else:
+        days_available_2 = [datetime.date(year, month + 1, day) for day in availability_2]
+        days_available_1 = [datetime.date(year, month, day) for day in availability_1]
+        return days_available_1, days_available_2
+
+
+def select_date():
+    '''
+    This function, through the use of availability_entire_year shows the available days to book and
+    let the user choose one. If the entire year is booked it will show the available days  of January of the next year.
+    If also January is completely booked it will print a message and returns 42
+    '''
+    now = datetime.date.today()
+    # recall of availability_entire_year
+    date_reader = availability_entire_year()
+    dates_available = []
+
+    # this entire if statement does the appropriate checking if the entire year is fully booked
+    if date_reader == 42:
+        print('the entire year has been booked')
+
+        days_january_next_year = availability_days(now.year + 1, 1)
+        # checks for january of the next year
+        if days_january_next_year != 42:
+            print('this are the available days for january of the next year')
+            for day in days_january_next_year:
+                print(datetime.date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
+
+            controller = 0
+            # this cycle is iterated until the
+            # user puts in input one of the available dates outputted
+            while controller == 0:
+                print('select one of the available date')
+                year = int(input('input the year'))
+                month = int(input('input the month'))
+                day = int(input('input the day'))
+                booking = datetime.date(year, month, day)
+                if booking not in dates_available:
+                    print('this date is not available for the moment '
+                          'please select an available date')
+
+                else:
+                    controller = controller + 1
+            return booking.strftime('%d/%m/%Y')
+
+        else:
+            print('unfortunately also january of the next year has been booked completely '
+                  'please come back after christmas vacation')
+            return 42
+
+    # this is the part of the function that works if there are available dates in the current year
+    print('this are the available date')
+    for date in date_reader:
+        print(date.strftime("%d/%m/%Y"))
+        dates_available.append(date.strftime("%d/%m/%Y"))
+    controller = 0
+    # this cycle is iterated until the
+    # user puts in input one of the available dates outputted
+    while controller == 0:
+        print('select one of the available date')
+        year = int(input('input the year '))
+        month = int(input('input the month '))
+        day = int(input('input the day '))
+
+        booking = datetime.date(year, month, day)
+
+        if booking not in date_reader:
+            print('this date is not available for the moment '
+                  'please select an available date')
+
+        else:
+            controller = controller + 1
+    return booking.strftime('%d/%m/%Y')
