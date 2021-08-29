@@ -6,8 +6,7 @@ the personal information and date of vaccination
 of new people.
 
 The input will be checked to
-see if it is already inside the
-database.
+see if it is already inside the database.
 
 It is necessary for the user to
 input a string that is not empty."
