@@ -18,7 +18,7 @@ def make_appointment(y, m, d):
 
     booking = datetime.date(y, m, d)
 
-    df = pd.DataFrame(pd.read_csv('cal.csv'))
+    df = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
     now = datetime.date.today()
     lis_reader = []
     counter=0
@@ -36,7 +36,7 @@ def make_appointment(y, m, d):
         print('you cannot select current date')
         return 1
     else:
-        for i in df.appointment:
+        for i in df["Date First Shot"]:
             time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
             lis_reader.append(time_reader)
 
@@ -50,10 +50,10 @@ def make_appointment(y, m, d):
 
 
         else:
-            df2 = pd.DataFrame({'appointment': [str(booking)]})
+            df2 = pd.DataFrame({'Date First Shot': [str(booking)]})
             df = df.append(df2, ignore_index=True)
 
-            df.to_csv('cal.csv', index=False)
+            df.to_csv('people_vaccinated.csv', index=False)
             print('you have booked')
 
 def avaiability_days(y, m):
@@ -64,7 +64,7 @@ def avaiability_days(y, m):
     If the entire month is booked it will return 42
     '''
 
-    df = pd.DataFrame(pd.read_csv('cal.csv'))
+    df = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
     lis_reader = []
     all_current_month_booked_days = []
     now=datetime.date.today()
@@ -77,7 +77,7 @@ def avaiability_days(y, m):
             if i != 0:
                 all_days_clean.append(i)  # all the days in month given in input to the function
 
-    for i in df.appointment:
+    for i in df["Date First Shot"]:
         time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
         lis_reader.append(time_reader)  # creates a list of datetime object of all the booked date
 

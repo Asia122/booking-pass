@@ -17,7 +17,7 @@ import csv
 import pandas as pd
 from checker import Check
 from fiscal_code import FiscalCodeCalculator
-
+from booking.py import make_appointment
 
 def add_element(nperson, response=""):
     db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
