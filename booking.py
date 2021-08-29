@@ -22,7 +22,8 @@ def make_appointment(y, m, d):
     now = datetime.date.today()
     lis_reader = []
     counter=0
-    # 
+
+    #checking for previous date
     if y < now.year:
         print('you cannot select previous years')
         return 1
@@ -30,26 +31,32 @@ def make_appointment(y, m, d):
         print('you cannot select previous month')
         return 1
     elif d < now.day:
-        print('you cannot select previous days')  ## checking for previous date
+        print('you cannot select previous days')
         return 1
-    elif y == now.year and m == now.month and d == now.day:  # checking for current date
+    # checking for current date
+    elif y == now.year and m == now.month and d == now.day:
         print('you cannot select current date')
         return 1
     else:
         for i in df.appointment:
             time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
+            # read the row and append datetime objects to a lis_reader
             lis_reader.append(time_reader)
 
         for i in lis_reader:
+            # counts how many time the inputted date is present in the csv
             if y == i.year and m == i.month and d == i.day:
                 counter=counter+1
+
+        # checks to count the maximum of 3 bookings
         if counter == 3:
             print('you cannot select this date')
-            return 1# checking for already selected date
+            return 1
 
 
 
         else:
+            # if all checks are false then you can add the date to csv
             df2 = pd.DataFrame({'appointment': [str(booking)]})
             df = df.append(df2, ignore_index=True)
 
@@ -75,27 +82,33 @@ def avaiability_days(y, m):
     for row in all_days:
         for i in row:
             if i != 0:
-                all_days_clean.append(i)  # all the days in month given in input to the function
+                # all the days in the month given in input to the function
+                all_days_clean.append(i)
 
     for i in df.appointment:
         time_reader = datetime.datetime.strptime(i, '%Y-%m-%d')
-        lis_reader.append(time_reader)  # creates a list of datetime object of all the booked date
+        #  creates a list of datetime objects of all the booked dates
+        lis_reader.append(time_reader)
 
     for i in lis_reader:
         if i.month == m:
-            all_current_month_booked_days.append(i.day)  # list of all the  month booked days
+            # list of all the  month booked days
+            all_current_month_booked_days.append(i.day)
 
     all_current_month_booked_days.sort()
 
 
 
     for booked_day in all_current_month_booked_days:
-        counter = [i for i, day in enumerate(all_current_month_booked_days) if day == booked_day]  # => [1, 3]
+        counter = [i for i, day in enumerate(all_current_month_booked_days) if day == booked_day]
         if booked_day in all_days_clean and len(counter) >= 3:
+            # removing to all the days of the month only the ones that have already been booked 3 times
             all_days_clean.remove(booked_day)
 
-    if m == now.month:   # consider also current date
+    # consider also current date, so to delete passed days to the availability
+    if m == now.month:
         for day in range(1,now.day+1):
+            # here check for passed fully booked days (3 times booked days)
             if day not in all_days_clean:
                 continue
             all_days_clean.remove(day)
@@ -112,8 +125,7 @@ def avaiability_entire_year(year, month):
     that are the closest to that month. If all the months are booked returns 42
     '''
 
-    control = avaiability_days(year,
-                               month)  ### completare la funzione tenendo in conto la situa di quando tutti i mesi sono booked e quindi cambi anno
+    control = avaiability_days(year,month)
 
     while control == 42:
         month = month + 1
@@ -121,6 +133,8 @@ def avaiability_entire_year(year, month):
         control = avaiability_days(year, month)
 
         if month == 12 and control == 42:
+            # if True means that while iterated for all the month up to december
+            # and that december is fully booked hence the entire year is booked
             return 42
             break
 
