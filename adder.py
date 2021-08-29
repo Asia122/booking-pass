@@ -15,8 +15,8 @@ input a string that is not empty."
 import csv
 import pandas as pd
 from checker import Check
-from fiscal_code import FiscalCodeCalculator
-from booking.py import make_appointment
+from fiscal_code import fiscal_code_calculator
+from booking import select_date
 
 def add_element(nperson, response=""):
     db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
@@ -51,12 +51,14 @@ def add_element(nperson, response=""):
             birthplace = input("You can't enter nothing... " +
                             "so please... put the birth place -> ")
             
-        firstdose = input("Please enter the firt dose date gg/mm/yyyy -> ")
+        firstdose= select_date()
+
+        """= input("Please enter the firt dose date gg/mm/yyyy -> ")
         while(firstdose == ""):
             firstdose = input("You can't enter nothing... " +
-                            "so please... put the firt dose date -> ")
+                            "so please... put the firt dose date -> ")"""
             
-        fiscalcode= FiscalCodeCalculator(name, surname, birthday, gender, birthplace)
+        fiscalcode= fiscal_code_calculator(name, surname, birthday, gender, birthplace)
                     
         with open('people_vaccinated.csv', 'a') as peopledata:
             newpeopledata = csv.writer(peopledata)

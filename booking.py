@@ -16,7 +16,7 @@ def availability_days(y, m):
     If the entire month is booked it will return 42
     '''
 
-    df = pd.DataFrame(pd.read_csv('cal.csv'))
+    df = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
     lis_reader = []
     all_current_month_booked_days = []
     now = datetime.date.today()
@@ -31,7 +31,7 @@ def availability_days(y, m):
                 # all the days in the month given in input to the function
                 all_days_clean.append(i)
 
-    for i in df.appointment:
+    for i in df["Date First Shot"]:
         time_reader = datetime.datetime.strptime(i, '%d/%m/%Y')
         #  creates a list of datetime objects of all the booked dates
         lis_reader.append(time_reader)
@@ -127,7 +127,7 @@ def select_date():
         days_january_next_year = availability_days(now.year + 1, 1)
         # checks for january of the next year
         if days_january_next_year != 42:
-            print('this are the available days for january of the next year')
+            print('this are the available vaccination days for january of the next year')
             for day in days_january_next_year:
                 print(datetime.date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
 
@@ -135,14 +135,14 @@ def select_date():
             # this cycle is iterated until the
             # user puts in input one of the available dates outputted
             while controller == 0:
-                print('select one of the available date')
+                print('select one of the available vaccination date')
                 year = int(input('input the year'))
                 month = int(input('input the month'))
                 day = int(input('input the day'))
                 booking = datetime.date(year, month, day)
                 if booking not in dates_available:
                     print('this date is not available for the moment '
-                          'please select an available date')
+                          'please select an available vaccination date')
 
                 else:
                     controller = controller + 1
@@ -154,7 +154,7 @@ def select_date():
             return 42
 
     # this is the part of the function that works if there are available dates in the current year
-    print('this are the available date')
+    print('this are the available vaccination date')
     for date in date_reader:
         print(date.strftime("%d/%m/%Y"))
         dates_available.append(date.strftime("%d/%m/%Y"))
@@ -162,7 +162,7 @@ def select_date():
     # this cycle is iterated until the
     # user puts in input one of the available dates outputted
     while controller == 0:
-        print('select one of the available date')
+        print('select one of the availablevaccination date')
         year = int(input('input the year '))
         month = int(input('input the month '))
         day = int(input('input the day '))
@@ -170,8 +170,8 @@ def select_date():
         booking = datetime.date(year, month, day)
 
         if booking not in date_reader:
-            print('this date is not available for the moment '
-                  'please select an available date')
+            print('this date is not available  for the moment '
+                  'please select an available vaccination date')
 
         else:
             controller = controller + 1

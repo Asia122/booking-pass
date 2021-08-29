@@ -1,7 +1,6 @@
 from datetime import date, timedelta, datetime
 import csv
 import pandas as pd
-from checker import Check
 
 """
 The module checker.py focuses on checking

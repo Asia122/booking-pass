@@ -11,7 +11,7 @@ import sqlite3
 import hashlib
 import argparse
 from access_db import parse_args, save_new_username_correct, check_for_username_correct, print_all_users, vaccinated_people, print_info
-from fiscal_code import FiscalCodeCalculator
+from fiscal_code import fiscal_code_calculator
 
 
 args = parse_args()
