@@ -23,9 +23,9 @@ if args.c and args.p:
     #the password is correct and get the role
 
     if ex is not None:
-        u_role = ex.fetchall()[0][0]
+        u_role = ex.fetchall()[0][0] #get the role
         if u_role == "admin":
-            print ("You are an admin, being an admin you can add new users to the database")
+            print ("You are an admin, being an admin you can add new users to the database or modify an old one")
             choice = input("Do you want to add a new user? Type y or n: ")
             
             if choice == "y":
@@ -49,8 +49,9 @@ if args.c and args.p:
             answer = input("Introduce the Fiscal Code or simply push enter if you want it calculated automatically ")
             add_element(answer)
         
-        elif u_role == "restaurant":
-            print("You can check the green pass")
+        elif u_role == "restaurant":   #python main.py -c AndreaRocco -p DataAnalyticsMaster
+            nperson = input("Check if a person has the greenpass giving his/her Fiscal Code:  ")
+            Check().CheckGreenPass(nperson)
         
         else:
             print("There is a problem")
@@ -58,7 +59,18 @@ if args.c and args.p:
         print("User is not present, or password is invalid")
     
 elif args.l:
-    print_all_users()
+    ex = check_for_username_correct(args.c, args.p) # check if the username is present,
+    #the password is correct and get the role
+
+    if ex is not None:
+        u_role = ex.fetchall()[0][0] #get the role
+        
+        if u_role == "admin":# check if the role is equal to admin
+            print_all_users()
+
+        else:
+            print("You aren't an admin, you can't visualize the list of users")
+    
 
 elif args.d:
     vaccinated_people()

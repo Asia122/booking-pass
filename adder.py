@@ -20,12 +20,8 @@ from fiscal_code import FiscalCodeCalculator
 
 
 def add_element(nperson, response=""):
-
-    """
-    This function comes into play once the doctor writes the optional argument -a
-    and proceeds to add the personal information and vaccination date.
-    """
     db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
+    
     if Check().check_fiscalcode(nperson):
         return print("sorry, but " + nperson + " fiscal code is already present " +
                      "in the database, no reason to add again, thank you")

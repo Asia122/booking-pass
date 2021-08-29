@@ -1,6 +1,6 @@
 """
 The module checker_greenpass.py focuses on checking
-if the user has the GreenPass or not.
+if a oerson has the GreenPass or not.
 In order to establish it, the date of the vaccination
 must be checked. If 15 days have passed from that date,
 (including the 15th day) the user has the GreenPass, otherwise not.
@@ -17,6 +17,7 @@ for the vaccination.
 
 
 import csv
+import datetime
 import pandas as pd
 from checker import Check   
 from datetime import date, timedelta
