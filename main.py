@@ -17,8 +17,48 @@ from fiscal_code import FiscalCodeCalculator
 args = parse_args()
 db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
 
+if args.l:
+    ex = check_for_username_correct(args.c, args.p) # check if the username is present and the password iserted is correct
 
-if args.c and args.p:
+    if ex is not None:
+        u_role = ex.fetchall()[0][0] #get the role
+        
+        if u_role == "admin":# check if the role is equal to admin
+            print_all_users()
+
+        else:
+            print("You aren't an admin, you can't visualize the list of users")
+    
+
+elif args.d:
+    ex = check_for_username_correct(args.c, args.p) # check if the username is present,
+    #the password is correct and get the role
+
+    if ex is not None:
+        u_role = ex.fetchall()[0][0] #get the role
+        
+        if u_role == "doctor":# check if the role is equal to doctor
+            vaccinated_people(db)
+
+        else:
+            print("You aren't a doctor, you can't visualize the list of vaccinated people")
+    
+
+elif args.f:
+    ex = check_for_username_correct(args.c, args.p) # check if the username is present,
+    #the password is correct and get the role
+
+    if ex is not None:
+        u_role = ex.fetchall()[0][0] #get the role
+        
+        if u_role == "doctor":# check if the role is equal to doctor
+            answer = input("Insert the Fiscal Code:")
+            print_info(answer)
+
+        else:
+            print("You aren't a doctor, you can't visualize the personal informations of the patients")
+
+else:
     ex = check_for_username_correct(args.c, args.p) # check if the username is present,
     #the password is correct and get the role
 
@@ -57,30 +97,7 @@ if args.c and args.p:
             print("There is a problem")
     else:
         print("User is not present, or password is invalid")
-    
-elif args.l:
-    ex = check_for_username_correct(args.c, args.p) # check if the username is present,
-    #the password is correct and get the role
 
-    if ex is not None:
-        u_role = ex.fetchall()[0][0] #get the role
-        
-        if u_role == "admin":# check if the role is equal to admin
-            print_all_users()
-
-        else:
-            print("You aren't an admin, you can't visualize the list of users")
-    
-
-elif args.d:
-    vaccinated_people()
-
-elif args.f:
-    answer = input("Insert the Fiscal Code:")
-    print_info(answer)
-
-else:
-    print ("Argument is not valid")
 
 
 
