@@ -2,14 +2,27 @@ import calendar
 import datetime
 import pandas as pd
 
+'''
+This module enables to book an appointment for a ... 
+and to check the available dates to book
+'''
+
+
+
 def make_appointment(y, m, d):
+    '''
+    This function takes as input the year,the month and the day, and tries to book
+    an appointment for that date, if that date is not available for any reason it will return 1.
+    If the date is available then it will modify the csv and add the selected date in the column appointment
+    '''
+
     booking = datetime.date(y, m, d)
 
     df = pd.DataFrame(pd.read_csv('cal.csv'))
     now = datetime.date.today()
     lis_reader = []
     counter=0
-
+    # 
     if y < now.year:
         print('you cannot select previous years')
         return 1
@@ -44,10 +57,17 @@ def make_appointment(y, m, d):
             print('you have booked')
 
 def avaiability_days(y, m):
+
+    '''
+    This function takes a year and a month as input and returns the available days
+    of that month. It takes in to account up to 3 people booking the same date.
+    If the entire month is booked it will return 42
+    '''
+
     df = pd.DataFrame(pd.read_csv('cal.csv'))
     lis_reader = []
     all_current_month_booked_days = []
-
+    now=datetime.date.today()
     cal = calendar.Calendar()
     all_days = cal.monthdayscalendar(y, m)
     all_days_clean = []
@@ -67,10 +87,18 @@ def avaiability_days(y, m):
 
     all_current_month_booked_days.sort()
 
+
+
     for booked_day in all_current_month_booked_days:
         counter = [i for i, day in enumerate(all_current_month_booked_days) if day == booked_day]  # => [1, 3]
         if booked_day in all_days_clean and len(counter) >= 3:
             all_days_clean.remove(booked_day)
+
+    if m == now.month:   # consider also current date
+        for day in range(1,now.day+1):
+            if day not in all_days_clean:
+                continue
+            all_days_clean.remove(day)
 
     if all_days_clean == []:
         return 42
@@ -78,6 +106,12 @@ def avaiability_days(y, m):
 
 
 def avaiability_entire_year(year, month):
+
+    '''
+    This function takes a year and a month as input and checks the next available date
+    that are the closest to that month. If all the months are booked returns 42
+    '''
+
     control = avaiability_days(year,
                                month)  ### completare la funzione tenendo in conto la situa di quando tutti i mesi sono booked e quindi cambi anno
 
@@ -91,3 +125,5 @@ def avaiability_entire_year(year, month):
             break
 
     return month, avaiability_days(year, month)
+
+print(avaiability_days(2021,8))
