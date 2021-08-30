@@ -103,15 +103,28 @@ else:
 
             if choice == "y":
                 n = input("Tell me the username: ")
+
+                while len(n) == 0:
+                    n = input("ERROR - Tell me the username: ")
+
                 p = input("Tell me the password: ")
+
+                while len(p) == 0:
+                    p = input("ERROR - Tell me the password: ")
+
+                right_role = False
                 r = input("Tell me the role (admin, doctor or restaurant): ")
-                if r in ["admin", "doctor", "restaurant"]:
-                    save_new_username_correct(
-                        n, p, r
-                    )  # use the function save_new_username_correct
-                    # to insert a new user in the database or modify an old one
-                else:
-                    print("Role not valid")
+
+                while not right_role:
+                    if r in ["admin", "doctor", "restaurant"]:
+                        save_new_username_correct(
+                            n, p, r
+                        )  # use the function save_new_username_correct
+                        # to insert a new user in the database or modify an old one
+                        right_role = True
+                    else:
+                        print("Role not valid")
+                        r = input("ERROR - Tell me the role (admin, doctor or restaurant): ")
 
             elif choice == "n":
                 print("You can only add new users in this section," +
