@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fiscal_code</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>fiscal_code</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/asiamartini/LAB_SPD/booking-pass/fiscal_code.py">/Users/asiamartini/LAB_SPD/booking-pass/fiscal_code.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-consonants_counter"><strong>consonants_counter</strong></a>(word)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;the&nbsp;number<br>
+of&nbsp;consonants&nbsp;in&nbsp;a&nbsp;word.<br>
+In&nbsp;the&nbsp;program&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;function<br>
+that&nbsp;returns&nbsp;the&nbsp;letters&nbsp;to&nbsp;insert&nbsp;in<br>
+the&nbsp;Italian&nbsp;fiscal&nbsp;code&nbsp;due&nbsp;to&nbsp;the<br>
+second-consonant&nbsp;skipping&nbsp;rule.</tt></dd></dl>
+ <dl><dt><a name="-fiscal_code_calculator"><strong>fiscal_code_calculator</strong></a>(name, surname, dob, gender, pob)</dt><dd><tt>This&nbsp;function&nbsp;comes&nbsp;into&nbsp;play&nbsp;when&nbsp;the&nbsp;adder,<br>
+after&nbsp;having&nbsp;asked&nbsp;all&nbsp;the&nbsp;personal&nbsp;information,<br>
+have&nbsp;to&nbsp;calculate&nbsp;the&nbsp;fiscal&nbsp;code.<br>
+The&nbsp;function&nbsp;recalls&nbsp;all&nbsp;the&nbsp;other&nbsp;functions<br>
+that&nbsp;build&nbsp;piece&nbsp;by&nbsp;piece&nbsp;the&nbsp;Italian&nbsp;fiscal&nbsp;code.</tt></dd></dl>
+ <dl><dt><a name="-get_birth_data"><strong>get_birth_data</strong></a>(dob, gender)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;an&nbsp;alphanumeric&nbsp;string<br>
+that&nbsp;represents&nbsp;the&nbsp;part&nbsp;of&nbsp;the&nbsp;Italian&nbsp;fiscal<br>
+code&nbsp;derivated&nbsp;by&nbsp;the&nbsp;date&nbsp;of&nbsp;birth&nbsp;of&nbsp;the&nbsp;person.<br>
+The&nbsp;string&nbsp;is&nbsp;composed&nbsp;by:<br>
+-&nbsp;Year&nbsp;of&nbsp;birth&nbsp;(2&nbsp;digits):&nbsp;the&nbsp;last&nbsp;2&nbsp;year&nbsp;of&nbsp;birth&nbsp;digits&nbsp;are&nbsp;used;<br>
+-&nbsp;Month&nbsp;of&nbsp;birth&nbsp;(1&nbsp;letter):&nbsp;each&nbsp;single&nbsp;month&nbsp;is&nbsp;associated&nbsp;with&nbsp;1&nbsp;letter;<br>
+-&nbsp;Birthday&nbsp;(2&nbsp;digits):&nbsp;2&nbsp;birthday&nbsp;digits&nbsp;used,&nbsp;if&nbsp;is&nbsp;a&nbsp;woman&nbsp;40&nbsp;is&nbsp;added.</tt></dd></dl>
+ <dl><dt><a name="-get_control_char"><strong>get_control_char</strong></a>(initial_fiscal_code)</dt><dd><tt>This&nbsp;function,&nbsp;given&nbsp;the&nbsp;first&nbsp;15<br>
+characters&nbsp;of&nbsp;the&nbsp;fiscal&nbsp;code,&nbsp;is&nbsp;able<br>
+to&nbsp;return&nbsp;the&nbsp;control&nbsp;character.<br>
+This&nbsp;letter&nbsp;is&nbsp;determined&nbsp;as&nbsp;follows:<br>
+-&nbsp;the&nbsp;8&nbsp;odd&nbsp;characters&nbsp;are&nbsp;set&nbsp;apart;&nbsp;same&nbsp;thing&nbsp;for&nbsp;the&nbsp;7&nbsp;even&nbsp;ones;<br>
+-&nbsp;each&nbsp;single&nbsp;character&nbsp;converted&nbsp;into&nbsp;a&nbsp;numeric&nbsp;value;<br>
+-&nbsp;all&nbsp;the&nbsp;values&nbsp;are&nbsp;to&nbsp;be&nbsp;added,&nbsp;the&nbsp;final&nbsp;result&nbsp;has&nbsp;to&nbsp;be&nbsp;divided&nbsp;by&nbsp;26;<br>
+-&nbsp;the&nbsp;remainder&nbsp;will&nbsp;give&nbsp;the&nbsp;last&nbsp;character.</tt></dd></dl>
+ <dl><dt><a name="-get_name_letters"><strong>get_name_letters</strong></a>(name)</dt><dd><tt>This&nbsp;funciton&nbsp;returns&nbsp;the&nbsp;second&nbsp;3&nbsp;letters<br>
+of&nbsp;the&nbsp;Italian&nbsp;fiscal&nbsp;code&nbsp;as&nbsp;string.<br>
+The&nbsp;first&nbsp;three&nbsp;consonants&nbsp;of&nbsp;the&nbsp;name&nbsp;are&nbsp;used.<br>
+If&nbsp;the&nbsp;name&nbsp;has&nbsp;less&nbsp;than&nbsp;3&nbsp;consonants,<br>
+then&nbsp;vowels&nbsp;will&nbsp;replace&nbsp;the&nbsp;blank&nbsp;spaces.<br>
+If&nbsp;the&nbsp;whole&nbsp;name&nbsp;has&nbsp;less&nbsp;than&nbsp;3&nbsp;letters,<br>
+the&nbsp;blank&nbsp;spaces&nbsp;are&nbsp;filled&nbsp;with&nbsp;an&nbsp;X.<br>
+If&nbsp;the&nbsp;name&nbsp;has&nbsp;more&nbsp;than&nbsp;3&nbsp;consonants,<br>
+the&nbsp;2nd&nbsp;is&nbsp;skipped.</tt></dd></dl>
+ <dl><dt><a name="-get_place_data"><strong>get_place_data</strong></a>(pob)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;the&nbsp;Belfiore&nbsp;code<br>
+used&nbsp;in&nbsp;the&nbsp;cadastral&nbsp;code&nbsp;which&nbsp;comprises<br>
+one&nbsp;letter,&nbsp;then&nbsp;three&nbsp;digits.<br>
+Each&nbsp;municipality&nbsp;has&nbsp;its&nbsp;code&nbsp;and<br>
+people&nbsp;born&nbsp;in&nbsp;a&nbsp;foreign&nbsp;country<br>
+have&nbsp;their&nbsp;own&nbsp;code&nbsp;according&nbsp;to&nbsp;the&nbsp;country&nbsp;of&nbsp;birth.</tt></dd></dl>
+ <dl><dt><a name="-get_surname_letters"><strong>get_surname_letters</strong></a>(surname)</dt><dd><tt>This&nbsp;funciton&nbsp;returns&nbsp;the&nbsp;first&nbsp;3&nbsp;letters<br>
+of&nbsp;the&nbsp;Italian&nbsp;fiscal&nbsp;code&nbsp;as&nbsp;string.<br>
+These&nbsp;part&nbsp;is&nbsp;represented&nbsp;by&nbsp;the<br>
+first&nbsp;3&nbsp;consonants&nbsp;of&nbsp;the&nbsp;surname&nbsp;are&nbsp;used.<br>
+If&nbsp;the&nbsp;surname&nbsp;has&nbsp;less&nbsp;than&nbsp;3&nbsp;consonants,<br>
+the&nbsp;vowels&nbsp;will&nbsp;replace&nbsp;the&nbsp;blank&nbsp;spaces.<br>
+If&nbsp;the&nbsp;whole&nbsp;surname&nbsp;has&nbsp;less&nbsp;than&nbsp;3&nbsp;letters,<br>
+the&nbsp;blank&nbsp;spaces&nbsp;are&nbsp;replaced&nbsp;with&nbsp;an&nbsp;X.</tt></dd></dl>
+</td></tr></table>
+</body></html>

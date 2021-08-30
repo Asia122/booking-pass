@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module checker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>checker</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/asiamartini/LAB_SPD/booking-pass/checker.py">/Users/asiamartini/LAB_SPD/booking-pass/checker.py</a></font></td></tr></table>
+    <p><tt>The&nbsp;module&nbsp;checker.py&nbsp;focuses&nbsp;on&nbsp;checking<br>
+if&nbsp;a&nbsp;person&nbsp;has&nbsp;the&nbsp;GreenPass&nbsp;or&nbsp;not.<br>
+In&nbsp;order&nbsp;to&nbsp;establish&nbsp;it,&nbsp;the&nbsp;date&nbsp;of&nbsp;the&nbsp;vaccination<br>
+must&nbsp;be&nbsp;checked.&nbsp;If&nbsp;15&nbsp;days&nbsp;have&nbsp;passed&nbsp;from&nbsp;that&nbsp;date,<br>
+(including&nbsp;the&nbsp;15th&nbsp;day)&nbsp;the&nbsp;user&nbsp;has&nbsp;the&nbsp;GreenPass,&nbsp;otherwise&nbsp;not.<br>
+This&nbsp;information&nbsp;is&nbsp;accessible&nbsp;only&nbsp;to&nbsp;the&nbsp;restaurateur.<br>
+In&nbsp;order&nbsp;to&nbsp;do&nbsp;that,&nbsp;the&nbsp;function&nbsp;<a href="#-check_green_pass">check_green_pass</a>()&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+First&nbsp;of&nbsp;all,&nbsp;it&nbsp;has&nbsp;to&nbsp;be&nbsp;checked&nbsp;if&nbsp;the&nbsp;user<br>
+is&nbsp;present&nbsp;in&nbsp;the&nbsp;csv&nbsp;file&nbsp;people_vaccinated.<br>
+If&nbsp;not,&nbsp;it&nbsp;means&nbsp;it&nbsp;doesn't&nbsp;even&nbsp;have&nbsp;the&nbsp;reservation<br>
+for&nbsp;the&nbsp;vaccination.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-check_fiscalcode"><strong>check_fiscalcode</strong></a>(nperson)</dt><dd><tt>This&nbsp;function&nbsp;controls&nbsp;if&nbsp;the&nbsp;fiscal&nbsp;code&nbsp;given<br>
+by&nbsp;the&nbsp;user&nbsp;is&nbsp;present&nbsp;in&nbsp;the&nbsp;fiscal&nbsp;code<br>
+column&nbsp;inside&nbsp;the&nbsp;people_vaccinated&nbsp;csv&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-check_green_pass"><strong>check_green_pass</strong></a>(nperson)</dt><dd><tt>This&nbsp;function&nbsp;takes&nbsp;as&nbsp;input&nbsp;the&nbsp;Fiscal&nbsp;Code<br>
+and&nbsp;checks&nbsp;if&nbsp;it&nbsp;is&nbsp;already&nbsp;present&nbsp;in&nbsp;the&nbsp;database.<br>
+If&nbsp;it&nbsp;is&nbsp;present&nbsp;checks&nbsp;if&nbsp;the&nbsp;person&nbsp;has&nbsp;the&nbsp;green&nbsp;pass.</tt></dd></dl>
+</td></tr></table>
+</body></html>

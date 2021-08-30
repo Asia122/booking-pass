@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module adder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>adder</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/asiamartini/LAB_SPD/booking-pass/adder.py">/Users/asiamartini/LAB_SPD/booking-pass/adder.py</a></font></td></tr></table>
+    <p><tt>The&nbsp;module&nbsp;adder.py&nbsp;has&nbsp;the&nbsp;purpose&nbsp;of&nbsp;let&nbsp;doctors&nbsp;append&nbsp;inside<br>
+the&nbsp;dataset&nbsp;people_vaccinated.csv&nbsp;the&nbsp;personal&nbsp;information&nbsp;of<br>
+new&nbsp;people.<br>
+&nbsp;<br>
+Name,&nbsp;Surname,&nbsp;Gender,&nbsp;Date&nbsp;of&nbsp;birth,&nbsp;Place&nbsp;of&nbsp;Birth,<br>
+fiscal&nbsp;code&nbsp;(if&nbsp;not&nbsp;given&nbsp;by&nbsp;the&nbsp;user,&nbsp;is&nbsp;automatically&nbsp;calculated<br>
+calling&nbsp;the&nbsp;external&nbsp;function&nbsp;fiscal_code.py)&nbsp;&nbsp;and&nbsp;finally<br>
+the&nbsp;vaccination&nbsp;date,&nbsp;chosen&nbsp;by&nbsp;the&nbsp;doctor&nbsp;&nbsp;or&nbsp;suggested&nbsp;by&nbsp;the<br>
+software,&nbsp;are&nbsp;all&nbsp;stored&nbsp;in&nbsp;a&nbsp;new&nbsp;line&nbsp;of&nbsp;people_vaccoinated.csv.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add_element"><strong>add_element</strong></a>(nperson)</dt><dd><tt>Add&nbsp;element&nbsp;is&nbsp;the&nbsp;function&nbsp;that<br>
+asks&nbsp;for&nbsp;the&nbsp;personal&nbsp;information&nbsp;to<br>
+the&nbsp;doctor&nbsp;and&nbsp;then&nbsp;add&nbsp;those&nbsp;information<br>
+to&nbsp;the&nbsp;people_vaccinated.csv</tt></dd></dl>
+ <dl><dt><a name="-check_date_before"><strong>check_date_before</strong></a>(date_input)</dt><dd><tt>The&nbsp;function&nbsp;checks&nbsp;if&nbsp;the&nbsp;input<br>
+passed&nbsp;in&nbsp;the&nbsp;function&nbsp;is&nbsp;a&nbsp;valid&nbsp;date<br>
+in&nbsp;the&nbsp;gg/mm/yyyy&nbsp;format&nbsp;and&nbsp;also&nbsp;checks&nbsp;that<br>
+the&nbsp;date&nbsp;is&nbsp;before&nbsp;today.</tt></dd></dl>
+ <dl><dt><a name="-writer"><strong>writer</strong></a>(...)</dt><dd><tt>csv_writer&nbsp;=&nbsp;csv.<a href="#-writer">writer</a>(fileobj&nbsp;[,&nbsp;dialect='excel']<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[optional&nbsp;keyword&nbsp;args])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;row&nbsp;in&nbsp;sequence:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;csv_writer.writerow(row)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[or]<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;csv_writer&nbsp;=&nbsp;csv.<a href="#-writer">writer</a>(fileobj&nbsp;[,&nbsp;dialect='excel']<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[optional&nbsp;keyword&nbsp;args])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;csv_writer.writerows(rows)<br>
+&nbsp;<br>
+The&nbsp;"fileobj"&nbsp;argument&nbsp;can&nbsp;be&nbsp;any&nbsp;object&nbsp;that&nbsp;supports&nbsp;the&nbsp;file&nbsp;API.</tt></dd></dl>
+</td></tr></table>
+</body></html>
