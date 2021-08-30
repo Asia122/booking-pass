@@ -74,7 +74,7 @@ The module *main.py* recalls all the functions needed to run the program. Based 
 Access to the command prompt of your pc and paste:
 
 ```bash
-git clone [https://github.com/Asia122/booking-pass](https://github.com/Asia122/booking-pass)
+git clone https://github.com/Asia122/booking-pass
 ```
 
 You will automatically download the folder containing all the modules and the files needed to run the program. Git should have been previously installed on the machine.
