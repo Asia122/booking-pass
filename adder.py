@@ -11,7 +11,7 @@ see if it is already inside the database.
 It is necessary for the user to
 input a string that is not empty."
 """
-import csv
+
 from csv import writer
 import datetime
 from datetime import datetime
@@ -47,8 +47,8 @@ def add_element(nperson, dataset):
         gender = input("Please enter your gender: M or F -> ")
         while gender == "":
             gender = input(
-                "You can't enter nothing... " +
-                "so please... the gender: M or F -> ")
+                "You can't enter nothing... " + "so please... the gender: M or F -> "
+            )
 
         birthday = input("Please enter the birthday gg/mm/yyyy-> ")
         while birthday == "":
@@ -60,11 +60,10 @@ def add_element(nperson, dataset):
         birthplace = input("Please enter the birth place -> ")
         while birthplace == "":
             birthplace = input(
-                "You can't enter nothing... " +
-                "so please... put the birth place -> ")
+                "You can't enter nothing... " + "so please... put the birth place -> "
+            )
 
-        fiscalcode = fiscal_code_calculator(
-            name, surname, birthday, gender, birthplace)
+        fiscalcode = fiscal_code_calculator(name, surname, birthday, gender, birthplace)
 
         if check_fiscalcode(fiscalcode):
             print(
@@ -77,8 +76,8 @@ def add_element(nperson, dataset):
         else:
             # ask to the patient if he/she is alre
             already_vaccinated = input(
-                "Have you already received the first " +
-                "vaccine shot? Type y or n: ")
+                "Have you already received the first " + "vaccine shot? Type y or n: "
+            )
 
             if already_vaccinated == "y":
                 # check if the date was inserted in the correct format
@@ -109,8 +108,4 @@ def add_element(nperson, dataset):
                     [fiscalcode, name, surname, gender, birthday, birthplace, firstdose]
                 )
 
-            print(
-                "You succeffully registered",
-                name,
-                surname,
-                "'s vaccination date!")
+            print("You succeffully registered", name, surname, "'s vaccination date!")
