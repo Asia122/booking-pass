@@ -125,7 +125,7 @@ else:
             print("Now you can add new vaccinations")
             answer = input(
                 "Introduce the Fiscal Code or simply push enter if" +
-                "you want it to be calculated "
+                " you want it to be calculated "
             )
 
             # call the function add_element which allows to add a new patient
@@ -139,7 +139,7 @@ else:
 
             # call the function check_green_pass which given the
             # fiscal code tells if the person has the greenpass or not
-            check_green_pass(nperson)
+            print(check_green_pass(nperson))
 
         else:
             print("There is a problem")

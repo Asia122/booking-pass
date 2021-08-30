@@ -67,12 +67,12 @@ def check_green_pass(nperson):
         """
 
         if end_date > today:
-            print(nperson + " " + "doesn't have the Green Pass yet.")
+            return nperson + " " + "doesn't have the Green Pass yet."
         else:
-            print( nperson + " " + "has the Green Pass.")
+            return nperson + " " + "has the Green Pass."
 
     else:
         result = "Sorry, but " + nperson + " "
         result = result + "doesn't have the reservation for the vaccination."
 
-        print(result)
+        return result

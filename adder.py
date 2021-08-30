@@ -27,10 +27,13 @@ def add_element(nperson):
             "Sorry, but "
             + nperson
             + " fiscal code is already present "
-            + "in the database, no reason to add again, thank you"
-        )
-
+            + "in the database, no reason to add again, thank you")
+        
+        return "present"
     else:
+        if len(nperson) != 16:
+            print("Wrong fiscal code format")
+        
         numbers = "1234567890"
         right_name = False
         name = input("Please enter the name -> ")
@@ -39,15 +42,15 @@ def add_element(nperson):
             right_name = True
 
             if name == "":
-                name = input("Please enter the name -> ")
+                name = input("ERROR - Please enter the name -> ")
                 right_name = False
             elif name[0] == " ":
-                name = input("Please enter the name -> ")
+                name = input("ERROR - Please enter the name -> ")
                 right_name = False
             else:
                 for x in name:
                     if x in numbers:
-                        name = input("Please enter the name -> ")
+                        name = input("ERROR - Please enter the name -> ")
                         right_name = False
         
         name = name[0].upper() + name[1:]
@@ -58,15 +61,15 @@ def add_element(nperson):
             right_surname = True
 
             if surname == "":
-                surname = input("Please enter the surname -> ")
+                surname = input("ERROR - Please enter the surname -> ")
                 right_surname = False
             elif surname[0] == " ":
-                surname = input("Please enter the surname -> ")
+                surname = input("ERROR - Please enter the surname -> ")
                 right_surname = False
             else:
                 for x in surname:
                     if x in numbers:
-                        surname = input("Please enter the surname -> ")
+                        surname = input("ERROR - Please enter the surname -> ")
                         right_surname = False
         
         surname = surname[0].upper() + surname[1:]
@@ -74,7 +77,7 @@ def add_element(nperson):
 
         while gender not in ["M", "m", "F", "f"]:
             gender = input(
-                "Please enter your gender: M or F -> "
+                "ERROR - Please enter your gender: M or F -> "
             )
 
         gender = gender.upper()
@@ -85,7 +88,7 @@ def add_element(nperson):
             right_birthday = True
 
             if not check_date_before(birthday):
-                birthday = input("Please enter the birthday gg/mm/yyyy -> ")
+                birthday = input("ERROR - Please enter the birthday gg/mm/yyyy -> ")
                 right_birthday = False
 
         birthplace = input("Please enter the birth place -> ")
@@ -93,7 +96,7 @@ def add_element(nperson):
 
         while birthplace.lower() not in belfiore["Place"].tolist():
             birthplace = input(
-                "Please enter the birth place -> "
+                "ERROR - Please enter the birth place -> "
             )
 
         fiscalcode = fiscal_code_calculator(name, surname, birthday, gender, birthplace)
@@ -114,14 +117,12 @@ def add_element(nperson):
                 while not check_format:
                     # get the day of the first dose
                     firstdose = input(
-                        "Enter the date of the vaccination in the format gg/mm/yyyy"
+                        "Enter the date of the vaccination in the format gg/mm/yyyy "
                     )
-                    try:
-                        datetime.strptime(firstdose, "%d/%m/%Y")
+                    if check_date_before(firstdose):
                         check_format = True
-                    except ValueError:
-                        check_format = False
-                        print("Incorrect date format.")
+                    else:
+                        print("ERROR")
             else:
                 firstdose = select_date()
 

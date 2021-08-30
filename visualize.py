@@ -68,6 +68,7 @@ def print_info(answer, db_vaccine):
               "whose first dose date is",
               db_vaccine["Date First Shot"].loc[db_vaccine["Fiscal Code"]
               .str.lower() == answer.lower()].values[0])
-
+        return True
     else:
         print("Fiscal Code not present in the database or format is invalid")
+        return False
