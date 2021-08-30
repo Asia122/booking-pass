@@ -134,7 +134,7 @@ Let’s see how it works in practice.
 Write in your prompt:
 
 ```bash
-python main.py -c Test_doctor -p Git2021
+python main.py -c DTest2021 -p h-farm
 ```
 
 The program will ask you to insert your fiscal code or to give the data needed to calculate it.
@@ -173,7 +173,7 @@ You successfully registered Paolo Rossi 's vaccination date!
 Now use the arguments -d, -c and -p.
 
 ```bash
-python main.py -d -c Test_doctor -p Git2021
+python main.py -d -c DTest2021 -p h-farm
 ```
 
 The users registered as doctors can visualize all the data contained in the dataset people_vaccinated.csv.
@@ -243,7 +243,7 @@ Now you can see by yourself if fiscal code is present in our database manually
 Finally, use the arguments -f, -c and -p:
 
 ```bash
-python main.py -f -c Test_doctor -p Git2021
+python main.py -f -c DTest2021 -p h-farm
 ```
 
 The users registered as doctors can visualize the patients' contained in the dataset *people_vaccinated.csv* given their fiscal code.
@@ -258,7 +258,7 @@ RSSPLA64R15G224Q is the fiscal code of Paolo Rossi whose first dose date is 25/0
 The restaurant using the arguments -c and -p can check if the client has the green pass or not.
 
 ```bash
-python main.py -c Test_restaurant -p Pippo21
+python main.py -c Test_restaurant -p Pippo
 ```
 
 The program will ask the user restaurant to give the fiscal code of the client as input and will return if it has the green pass or not as follows. 
