@@ -168,9 +168,9 @@ def get_place_data(pob):
     """
 
     pob = pob.lower()
-    codes = pd.read_csv("registry_codes.csv")
+    belfiore = pd.read_csv("registry_codes.csv")
 
-    return codes.loc[codes["Place"] == pob]["Code"].to_string()[-4:].upper()
+    return belfiore["Code"].loc[belfiore["Place"] == pob].to_string()[-4:].upper()
 
 
 def get_control_char(initial_fiscal_code):
@@ -287,11 +287,11 @@ def get_control_char(initial_fiscal_code):
                       24: "Y",
                       25: "Z"}
 
-    for position in range(len(initial_fiscal_code)):
-        if (position + 1) % 2 == 0:
-            even_chars += [initial_fiscal_code[position]]
+    for position in enumerate(initial_fiscal_code):
+        if (position[0] + 1) % 2 == 0:
+            even_chars += [initial_fiscal_code[position[0]]]
         else:
-            odd_chars += [initial_fiscal_code[position]]
+            odd_chars += [initial_fiscal_code[position[0]]]
 
     for even_char in even_chars:
         sum_chars += even_dict[even_char]
