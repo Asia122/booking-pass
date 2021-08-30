@@ -3,7 +3,7 @@ The fiscal_code module has multiple functions
 with the purpose of calculating the Italian fiscal code
 given name, surname, date of birth, gender, and place of birth.
 The input in the functions is not checked because
-it is checked in the part that calls the fiscal_code_calculator funciton.
+it is checked in the part that calls the fiscal_code_calculator function.
 """
 
 import pandas as pd
