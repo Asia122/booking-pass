@@ -209,3 +209,4 @@ def select_date():
         else:
             controller = controller + 1
     return booking.strftime("%d/%m/%Y")
+
