@@ -67,8 +67,9 @@ def check_for_username_correct(username, password):
 
     # check if the search given results and assign the role to the variable
     if results:
-        role = cursor.execute("SELECT role FROM user_role WHERE username=?",
-                              (results[0][0],))
+        r_role = cursor.execute("SELECT role FROM user_role WHERE username=?",
+                           (results[0][0],))
+        role = r_role.fetchall()[0][0]
 
     else:
         role = 0

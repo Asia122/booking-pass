@@ -31,10 +31,9 @@ if args.l:
     # check if the username is present and the passwordis correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    ex = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(args.c, args.p)
 
-    if ex != 0:
-        u_role = ex.fetchall()[0][0]  # get the role
+    if u_role != 0:
 
         if u_role == "admin":  # check if the role is equal to admin
             print_all_users()
@@ -48,10 +47,9 @@ elif args.d:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    ex = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(args.c, args.p)
 
-    if ex != 0:
-        u_role = ex.fetchall()[0][0]  # get the role
+    if u_role != 0:
 
         if u_role == "doctor":  # check if the role is equal to doctor
             table = vaccinated_people(db)
@@ -71,10 +69,9 @@ elif args.f:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    ex = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(args.c, args.p)
 
-    if ex != 0:
-        u_role = ex.fetchall()[0][0]  # get the role
+    if u_role != 0:
 
         if u_role == "doctor":  # check if the role is equal to doctor
             input_answer = input("Insert the Fiscal Code:")
@@ -93,10 +90,10 @@ else:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    ex = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(args.c, args.p)
 
-    if ex != 0:
-        u_role = ex.fetchall()[0][0]  # get the role
+    if u_role != 0:
+
         if u_role == "admin":
             print(
                 "You are an admin so you can add new users to the database" +
@@ -136,7 +133,7 @@ else:
             add_element(answer, db)
 
         elif u_role == "restaurant":
-            # python main.py -c AndreaRocco -p DataAnalyticsMaster
+
             nperson = input("Check if a person has the greenpass" +
                             "giving the Fiscal Code: ")
 
