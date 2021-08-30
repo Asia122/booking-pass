@@ -25,7 +25,8 @@ if args.l:
 
 elif args.d:
     ex = check_for_username_correct(args.c, args.p)
-    # check if the username is present, the password is correct and get the role
+    # check if the username is present, the password is correct and get the
+    # role
 
     if ex != 0:
         u_role = ex.fetchall()[0][0]  # get the role
@@ -44,8 +45,9 @@ elif args.d:
 
 
 elif args.f:
-    ex = check_for_username_correct(args.c, args.p)  # check if the username is present,
-    # the password is correct and get the role
+    ex = check_for_username_correct(args.c, args.p)
+    # check if the username is present, the password is correct and get the
+    # role
 
     if ex != 0:
         u_role = ex.fetchall()[0][0]  # get the role
@@ -64,7 +66,8 @@ elif args.f:
 
 else:
     ex = check_for_username_correct(args.c, args.p)
-    # check if the username is present, the password is correct and get the role
+    # check if the username is present, the password is correct and get the
+    # role
 
     if ex != 0:
         u_role = ex.fetchall()[0][0]  # get the role
