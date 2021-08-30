@@ -1,3 +1,4 @@
+""" System Module """
 from datetime import date, timedelta, datetime
 import pandas as pd
 
@@ -43,28 +44,25 @@ def check_green_pass(nperson):
 
         vaccinated_df = pd.DataFrame(pd.read_csv("people_vaccinated.csv"))
 
-        pers_date = vaccinated_df.loc[vaccinated_df["Fiscal Code"] == nperson,"Date First Shot"]
+        pers_date = vaccinated_df.loc[vaccinated_df["Fiscal Code"] == nperson,
+                                      "Date First Shot"]
         # to select the corresponding date of vaccination given
         # the fiscal code of the user
 
         pers_date = pers_date.to_string()
         pers_date = pers_date[-10:]
-        pers_date = datetime.strptime(pers_date,"%d/%m/%Y").date()
+        pers_date = datetime.strptime(pers_date, "%d/%m/%Y").date()
 
-        """
-        Since the column df["Date First Shot"] is
-        a pandas.core.series.Series,
-        the column's entries have to be transformed in datetime.
-        """
+        # Since the column df["Date First Shot"] is
+        # a pandas.core.series.Series,
+        # the column's entries have to be transformed in datetime.
 
-        end_date = pers_date + timedelta(days = 15)
+        end_date = pers_date + timedelta(days=15)
         # green pass is valid after 15 days from the vaccination day
 
-        """
-        if nperson_date + 15 days = today --> YES GreenPass
-        if nperson_date + 15 days < today --> YES GreenPass
-        if nperson_date + 15 days > today --> NO GreenPass
-        """
+        # if nperson_date + 15 days = today --> YES GreenPass
+        # if nperson_date + 15 days < today --> YES GreenPass
+        # if nperson_date + 15 days > today --> NO GreenPass
 
         if end_date > today:
             return nperson + " " + "doesn't have the Green Pass yet."
