@@ -11,88 +11,117 @@ software, are all stored in a new line of people_vaccoinated.csv.
 """
 
 from csv import writer
+import pandas as pd
 import datetime
-from datetime import datetime
+from datetime import datetime, date
+from numpy import number
 from checker import check_fiscalcode
 from fiscal_code import fiscal_code_calculator
 from booking import select_date
 
 
-def add_element(nperson, dataset):
+def add_element(nperson):
 
     if check_fiscalcode(nperson):
         print(
-            "sorry, but "
+            "Sorry, but "
             + nperson
             + " fiscal code is already present "
             + "in the database, no reason to add again, thank you"
         )
 
     else:
+        numbers = "1234567890"
+        right_name = False
         name = input("Please enter the name -> ")
-        while name == "":
-            name = input(
-                "You can't enter nothing... " + "so please... put the name -> "
-            )
 
+        while not right_name:
+            right_name = True
+
+            if name == "":
+                name = input("Please enter the name -> ")
+                right_name = False
+            elif name[0] == " ":
+                name = input("Please enter the name -> ")
+                right_name = False
+            else:
+                for x in name:
+                    if x in numbers:
+                        name = input("Please enter the name -> ")
+                        right_name = False
+        
+        name = name[0].upper() + name[1:]
+        right_surname = False
         surname = input("Please enter the surname -> ")
-        while surname == "":
-            surname = input(
-                "You can't enter nothing... " + "so please... the surname -> "
-            )
 
+        while not right_surname:
+            right_surname = True
+
+            if surname == "":
+                surname = input("Please enter the surname -> ")
+                right_surname = False
+            elif surname[0] == " ":
+                surname = input("Please enter the surname -> ")
+                right_surname = False
+            else:
+                for x in surname:
+                    if x in numbers:
+                        surname = input("Please enter the surname -> ")
+                        right_surname = False
+        
+        surname = surname[0].upper() + surname[1:]
         gender = input("Please enter your gender: M or F -> ")
-        while gender == "":
+
+        while gender not in ["M", "m", "F", "f"]:
             gender = input(
-                "You can't enter nothing... " + "so please... the gender: M or F -> "
+                "Please enter your gender: M or F -> "
             )
 
-        birthday = input("Please enter the birthday gg/mm/yyyy-> ")
-        while birthday == "":
-            birthday = input(
-                "You can't enter nothing... "
-                + "so please... put the birthday gg/mm/yyyy-> "
-            )
+        gender = gender.upper()
+        right_birthday = False
+        birthday = input("Please enter the birthday gg/mm/yyyy -> ")
+
+        while not right_birthday:
+            right_birthday = True
+
+            if not check_date_before(birthday):
+                birthday = input("Please enter the birthday gg/mm/yyyy -> ")
+                right_birthday = False
 
         birthplace = input("Please enter the birth place -> ")
-        while birthplace == "":
+        belfiore = pd.read_csv("registry_codes.csv")
+
+        while birthplace.lower() not in belfiore["Place"].tolist():
             birthplace = input(
-                "You can't enter nothing... " + "so please... put the birth place -> "
+                "Please enter the birth place -> "
             )
 
         fiscalcode = fiscal_code_calculator(name, surname, birthday, gender, birthplace)
 
         if check_fiscalcode(fiscalcode):
-            print(
-                "sorry, but "
-                + fiscalcode
-                + " fiscal code is already present "
-                + "in the database, no reason to add again, thank you"
-            )
+            print("Sorry, but " + fiscalcode + " fiscal code is already present in the database, no reason to add again, thank you.")
 
         else:
             # ask to the patient if he/she is alre
             already_vaccinated = input(
-                "Have you already received the first " + "vaccine shot? Type y or n: "
+                "Have you already received the first vaccine shot? Y or N: "
             )
 
-            if already_vaccinated == "y":
+            if already_vaccinated in ["Y", "y"]:
                 # check if the date was inserted in the correct format
                 check_format = False
 
                 while not check_format:
                     # get the day of the first dose
                     firstdose = input(
-                        "Enter the date of the vaccination in "
-                        + "the format gg/mm/yyyy"
+                        "Enter the date of the vaccination in the format gg/mm/yyyy"
                     )
                     try:
                         datetime.strptime(firstdose, "%d/%m/%Y")
                         check_format = True
                     except ValueError:
                         check_format = False
-                        print("Incorrect date format")
-
+                        print("Incorrect date format.")
             else:
                 firstdose = select_date()
 
@@ -106,3 +135,20 @@ def add_element(nperson, dataset):
                 )
 
             print("You succeffully registered", name, surname, "'s vaccination date!")
+            return True
+
+
+def check_date_before(date_input):
+    if len(date_input) == 10:
+        try:
+            input_datetime = datetime.strptime(date_input, "%d/%m/%Y").date()
+            today = date.today()
+        except ValueError:
+            return False
+
+        if datetime.strptime(date_input, "%d/%m/%Y").date() < date.today():
+            return True
+        else:
+            return False
+    else:
+        return False

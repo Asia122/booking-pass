@@ -57,7 +57,7 @@ def check_green_pass(nperson):
         the column's entries have to be transformed in datetime.
         """
 
-        end_date = pers_date + timedelta(days=15)
+        end_date = pers_date + timedelta(days = 15)
         # green pass is valid after 15 days from the vaccination day
 
         """

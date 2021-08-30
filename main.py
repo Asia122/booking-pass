@@ -130,7 +130,7 @@ else:
 
             # call the function add_element which allows to add a new patient
             # to the dataset given the fiscal code and the database
-            add_element(answer, db)
+            add_element(answer)
 
         elif u_role == "restaurant":
 
