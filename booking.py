@@ -182,7 +182,6 @@ def select_date():
                     controller = controller + 1
             return booking.strftime("%d/%m/%Y")
 
-
         print(
             "unfortunately also january of the next year"
             " has been booked completely "
@@ -215,4 +214,3 @@ def select_date():
         else:
             controller = controller + 1
     return booking.strftime("%d/%m/%Y")
-

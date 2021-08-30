@@ -13,7 +13,6 @@ If not, it means it doesn't even have the reservation
 for the vaccination.
 """
 
-
 from datetime import date, timedelta, datetime
 import pandas as pd
 
@@ -36,7 +35,11 @@ def check_fiscalcode(nperson):
 
 
 def check_green_pass(nperson):
-
+    """
+    This function takes as input the Fiscal Code
+    and checks if it is already present in the database.
+    If it is present checks if the person has the green pass.
+    """
     today = date.today()
     # return the current local date (without the time)
 
@@ -72,7 +75,7 @@ def check_green_pass(nperson):
     else:
         if len(nperson) == 16:
             result = "Sorry, but " + nperson + " "
-            result = result + "doesn't have the reservation for the vaccination."
+            result = result + "doesn't have the reservation for the vaccine"
         else:
             result = "Wrong fiscal code format"
 
