@@ -14,7 +14,7 @@ from access_db import parse_args, save_new_username_correct, check_for_username_
 from fiscal_code import fiscal_code_calculator
 from visualize import print_all_users, vaccinated_people, print_info
 from adder import add_element
-from checker import Check
+from checker import check_green_pass
 
 args = parse_args()
 db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
@@ -103,7 +103,7 @@ else:
         
         elif u_role == "restaurant":   #python main.py -c AndreaRocco -p DataAnalyticsMaster
             nperson = input("Check if a person has the greenpass giving his/her Fiscal Code:  ")
-            Check().CheckGreenPass(nperson)
+            check_green_pass(nperson)
         
         else:
             print("There is a problem")

@@ -15,7 +15,7 @@ import csv
 from csv import writer
 import datetime
 from datetime import datetime
-from checker import Check
+from checker import check_fiscalcode
 from fiscal_code import fiscal_code_calculator
 from booking import select_date
 
@@ -23,7 +23,7 @@ from booking import select_date
 def add_element(nperson, dataset):
     # db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
 
-    if Check().check_fiscalcode(nperson):
+    if check_fiscalcode(nperson):
         print("sorry, but " + nperson + " fiscal code is already present " +
               "in the database, no reason to add again, thank you")
 
@@ -57,7 +57,7 @@ def add_element(nperson, dataset):
                                             birthday, gender,
                                             birthplace)
 
-        if Check().check_fiscalcode(fiscalcode):
+        if check_fiscalcode(fiscalcode):
             print("sorry, but " + fiscalcode +
                   " fiscal code is already present "
                   + "in the database, no reason to add again, thank you")
