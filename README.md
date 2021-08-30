@@ -267,3 +267,11 @@ The program will ask the user restaurant to give the fiscal code of the client a
 Check if a person has the greenpass giving the Fiscal Code: RSSPLA64R15G224Q
 RSSPLA64R15G224Q doesn't have the Green Pass yet.
 ```
+
+# Authors
+
+- Cusinato Nicole
+- Martini Asia
+- Provenzano Leonardo
+- Rocco Andrea
+- Trabucco Riccardo
