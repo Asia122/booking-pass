@@ -1,12 +1,12 @@
 # Booking Pass
 
-# Introduction
+## Introduction
 
 Booking-pass is a software development project that allows users to book the COVID-19 vaccine and know if he/she has the GreenPass or not. 
 
 Given a username and a password, the program allows users to access different sections based on their roles. Username, password and roles are registered in the database *access_db.db.*
 
-# Files
+## Files
 
 ### ***access_db.db***
 
@@ -14,7 +14,7 @@ The *database access_db.db* contains two tables: one named *user* containing use
 
 ### ***people_vaccinated.csv***
 
-The CSV file *people_vaccinated.csv *****contains the list of all vaccinated people. The variables are Fiscal Code, Name, Surname, Gender, Date of birth, Place of Birth and Date of the first shot. This file will be used by doctors to add new vaccinated patients and by restaurateurs to check if customers have the green pass.
+The CSV file *people_vaccinated.csv contains the list of all vaccinated people. The variables are Fiscal Code, Name, Surname, Gender, Date of birth, Place of Birth and Date of the first shot. This file will be used by doctors to add new vaccinated patients and by restaurateurs to check if customers have the green pass.
 
 ### ***registry_codes.csv***
 
@@ -22,11 +22,11 @@ The CSV file *registry_codes.csv* contains the list of the Italian cities with t
 
 ### ***access_db.py***
 
-The module *access_db.py* contains the functions used to access the database db_password.db and modify it. The function *check_for_username_correct* takes as input username and password. It is used to verify that the username and password given as input to the program are contained in the database *access_db* and gives as output the role of the user. The function *save_new_username_correct* takes as input **username password and role. It **allows the admin to add new users to the database or to correct the data of one of the existing ones. This module also contains the function *parse_args* which defines the arguments needed to run the program.
+The module *access_db.py* contains the functions used to access the database db_password.db and modify it. The function *check_for_username_correct()* takes as input username and password. It is used to verify that the username and password given as input to the program are contained in the database *access_db* and gives as output the role of the user. The function *save_new_username_correct()* takes as input **username password and role. It **allows the admin to add new users to the database or to correct the data of one of the existing ones. This module also contains the function *parse_args* which defines the arguments needed to run the program.
 
 ### ***visualize.py***
 
-The module *visualize.py* contains the functions which allow users to visualize data stored in the database *password_db.db* and in the dataset *people_vaccinated.csv*. The function *print_all_users* gives the list of all the users present in the database and their role, *vaccinated_people* takes as input the CSV dataset and allows to visualize **the data contained. Finally, *print_info* allows getting all the data of a patient contained in *people_vaccinated.csv* ****given its fiscal code.
+The module *visualize.py* contains the functions which allow users to visualize data stored in the database *password_db.db* and in the dataset *people_vaccinated.csv*. The function *print_all_users()* gives the list of all the users present in the database and their role, *vaccinated_people()* takes as input the CSV dataset and allows to visualize **the data contained. Finally, *print_info* allows getting all the data of a patient contained in *people_vaccinated.csv* ****given its fiscal code.
 
 ### ***checker.py***
 
@@ -61,13 +61,15 @@ The module adder*.py has the* purpose of letting doctors append inside the datas
 
 ### ***booking.py***
 
-**PROVE**
+The module *booking.py* contains the functions that, working together, enables to choose and return a suitable date for the vaccination. There are 3 functions that work together once the *select_date()* function is called in *adder.py*.
+The function *select_date()*, through the use of *availability_entire_year()* shows the available days to book closest to the current day up to 2 months and let the user choose one. A date is considered available till a max of three people are booked.
+If the entire year is booked it will show the available days of January of the next year. 
 
 ### ***main.py***
 
-Once the username and a password are given, the software check if the username is present and the password inserted in is the corresponding one, if everything is correct the program allows users to access different sections based on their role. Username, password and roles are registered in the database
+The module *main.py* recalls all the functions needed to run the program. Based on the argument selected by the user it allows to perform different actions. The arguments -c (username) and -p (password) are always mandatory and are checked by the function *check_for_username_correct()*. The other arguments are -l, -d and -f which usage will be defined later on in this paper.
 
-# Installation
+## Installation
 
 Access to the command prompt of your pc and paste:
 
@@ -77,7 +79,7 @@ git clone [https://github.com/Asia122/booking-pass](https://github.com/Asia122/b
 
 You will automatically download the folder containing all the modules and the files needed to run the program. Git should have been previously installed on the machine.
 
-# Functionalities
+## Functionalities
 
 The program, based on the arguments given, username and password, allows access to different sections. The mandatory arguments are -c and -p are mandatory arguments that take as input the username (-c) and password (-p). Username and password refer to a precise user stored in the database *access_db.db* who, depending on the role, can do various things. Indeed -l, -d and -f is not mandatory and allow only data visualization.
 
@@ -268,7 +270,7 @@ Check if a person has the greenpass giving the Fiscal Code: RSSPLA64R15G224Q
 RSSPLA64R15G224Q doesn't have the Green Pass yet.
 ```
 
-# Authors
+## Authors
 
 - Cusinato Nicole
 - Martini Asia
