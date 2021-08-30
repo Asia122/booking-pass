@@ -4,7 +4,7 @@ if a person has the GreenPass or not.
 In order to establish it, the date of the vaccination
 must be checked. If 15 days have passed from that date,
 (including the 15th day) the user has the GreenPass, otherwise not.
-This information is accessible only to the restaurateur.
+This information is accessible only to the restaurant.
 In order to do that, the function check_green_pass() is used.
 
 First of all, it has to be checked if the user
