@@ -7,7 +7,7 @@ The function select_date(), through the use of availability_entire_year()
 shows the available days to book closest to the current day up
 to 2 months and let the user choose one. A date is considered
 available till a max of three people are booked.
-If the entire year is booked it will show the available days  of
+If the entire year is booked it will show the available days of
 January of the next year.
 """
 
