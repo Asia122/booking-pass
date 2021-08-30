@@ -11,16 +11,20 @@ software, are all stored in a new line of people_vaccoinated.csv.
 """
 
 from csv import writer
-import pandas as pd
-import datetime
 from datetime import datetime, date
-from numpy import number
+import pandas as pd
 from checker import check_fiscalcode
 from fiscal_code import fiscal_code_calculator
 from booking import select_date
 
 
 def add_element(nperson):
+    """
+    Add element is the function that
+    asks for the personal information to
+    the doctor and then add those information
+    to the people_vaccinated.csv
+    """
 
     if check_fiscalcode(nperson):
         print(
@@ -28,12 +32,14 @@ def add_element(nperson):
             + nperson
             + " fiscal code is already present "
             + "in the database, no reason to add again, thank you")
-        
-        return "present"
+
+        result = "present"
     else:
         if len(nperson) != 16:
             print("Wrong fiscal code format")
-        
+        elif len(nperson) == 0:
+            print("Let's continue!")
+
         numbers = "1234567890"
         right_name = False
         name = input("Please enter the name -> ")
@@ -48,11 +54,11 @@ def add_element(nperson):
                 name = input("ERROR - Please enter the name -> ")
                 right_name = False
             else:
-                for x in name:
-                    if x in numbers:
+                for letter in name:
+                    if letter in numbers:
                         name = input("ERROR - Please enter the name -> ")
                         right_name = False
-        
+
         name = name[0].upper() + name[1:]
         right_surname = False
         surname = input("Please enter the surname -> ")
@@ -67,11 +73,11 @@ def add_element(nperson):
                 surname = input("ERROR - Please enter the surname -> ")
                 right_surname = False
             else:
-                for x in surname:
-                    if x in numbers:
+                for letter in surname:
+                    if letter in numbers:
                         surname = input("ERROR - Please enter the surname -> ")
                         right_surname = False
-        
+
         surname = surname[0].upper() + surname[1:]
         gender = input("Please enter your gender: M or F -> ")
 
@@ -102,7 +108,8 @@ def add_element(nperson):
         fiscalcode = fiscal_code_calculator(name, surname, birthday, gender, birthplace)
 
         if check_fiscalcode(fiscalcode):
-            print("Sorry, but " + fiscalcode + " fiscal code is already present in the database, no reason to add again, thank you.")
+            print("Sorry, but " + fiscalcode
+                  + " fiscal code is already present in the database, thank you.")
 
         else:
             # ask to the patient if he/she is alre
@@ -136,20 +143,28 @@ def add_element(nperson):
                 )
 
             print("You succeffully registered", name, surname, "'s vaccination date!")
-            return True
+            result = True
+
+    return result
 
 
 def check_date_before(date_input):
+    """
+    The function checks if the input
+    passed in the function is a valid date
+    in the gg/mm/yyyy format and also checks that
+    the date is before today.
+    """
+
     if len(date_input) == 10:
         try:
             input_datetime = datetime.strptime(date_input, "%d/%m/%Y").date()
             today = date.today()
         except ValueError:
-            return False
+            result = False
 
-        if datetime.strptime(date_input, "%d/%m/%Y").date() < date.today():
-            return True
-        else:
-            return False
+        result = bool(input_datetime < today)
     else:
-        return False
+        result = False
+
+    return result
