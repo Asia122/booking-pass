@@ -50,22 +50,26 @@ def add_element(nperson, response=""):
         while(birthplace == ""):
             birthplace = input("You can't enter nothing... " +
                             "so please... put the birth place -> ")
-            
-        firstdose= select_date()
 
         """= input("Please enter the firt dose date gg/mm/yyyy -> ")
         while(firstdose == ""):
             firstdose = input("You can't enter nothing... " +
                             "so please... put the firt dose date -> ")"""
             
-        fiscalcode= fiscal_code_calculator(name, surname, birthday, gender, birthplace)
-                    
+        fiscalcode = fiscal_code_calculator(name, surname, birthday, gender, birthplace)
+
+        if Check().check_fiscalcode(fiscalcode):
+            return print("sorry, but " + fiscalcode + " fiscal code is already present " +
+                         "in the database, no reason to add again, thank you")
+        
+        firstdose = select_date()
+                   
         with open('people_vaccinated.csv', 'a') as peopledata:
             newpeopledata = csv.writer(peopledata)
             row = len(db)
-            #peopledata.write("\n")
-            newpeopledata.writerow([fiscalcode, name, surname,gender, birthday, birthplace, firstdose])
-        return print("you succeffully registered",name, surname, "'s vaccination date!")
+            newpeopledata.writerow([fiscalcode, name, surname, gender, birthday, birthplace, firstdose])
+        
+        return print("You succeffully registered",name, surname,"'s vaccination date!")
 
 
     

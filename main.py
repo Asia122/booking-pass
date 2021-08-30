@@ -2,7 +2,10 @@
 "WRITE THE PROGRAM DESCRIPTION"
 #LAVORIAMO QUI
 
-
+import calendar
+import datetime
+from datetime import datetime
+from datetime import date
 import argparse
 import pandas as pd
 from adder import add_element
@@ -10,8 +13,9 @@ from checker import Check
 import sqlite3
 import hashlib
 import argparse
-from access_db import parse_args, save_new_username_correct, check_for_username_correct, print_all_users, vaccinated_people, print_info
+from access_db import parse_args, save_new_username_correct, check_for_username_correct
 from fiscal_code import fiscal_code_calculator
+from visualize import print_all_users, vaccinated_people, print_info
 
 
 args = parse_args()
@@ -38,7 +42,8 @@ elif args.d:
         u_role = ex.fetchall()[0][0] #get the role
         
         if u_role == "doctor":# check if the role is equal to doctor
-            vaccinated_people(db)
+            table = vaccinated_people(db)
+            print (table)
 
         else:
             print("You aren't a doctor, you can't visualize the list of vaccinated people")
@@ -52,8 +57,8 @@ elif args.f:
         u_role = ex.fetchall()[0][0] #get the role
         
         if u_role == "doctor":# check if the role is equal to doctor
-            answer = input("Insert the Fiscal Code:")
-            print_info(answer)
+            input_answer = input("Insert the Fiscal Code:")
+            print_info(input_answer, db)
 
         else:
             print("You aren't a doctor, you can't visualize the personal informations of the patients")
@@ -97,15 +102,3 @@ else:
             print("There is a problem")
     else:
         print("User is not present, or password is invalid")
-
-
-
-
-
-
-
-       
-
-
-
-

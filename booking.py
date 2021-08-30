@@ -1,7 +1,8 @@
 import calendar
 import datetime
 import pandas as pd
-
+from datetime import datetime
+from datetime import date
 '''
 This module provides with functions that, working together, enables to choose and return
 a suitable date for the vaccination.
@@ -19,7 +20,7 @@ def availability_days(y, m):
     df = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
     lis_reader = []
     all_current_month_booked_days = []
-    now = datetime.date.today()
+    now = date.today()
     cal = calendar.Calendar()
     all_days = cal.monthdayscalendar(y, m)
     all_days_clean = []
@@ -32,7 +33,7 @@ def availability_days(y, m):
                 all_days_clean.append(i)
 
     for i in df["Date First Shot"]:
-        time_reader = datetime.datetime.strptime(i, '%d/%m/%Y')
+        time_reader = datetime.strptime(i, '%d/%m/%Y')
         #  creates a list of datetime objects of all the booked dates
         lis_reader.append(time_reader)
 
@@ -70,7 +71,7 @@ def availability_entire_year():
     and returns the available dates up to 2 months.
     If all the months are booked returns 42
     '''
-    now = datetime.date.today()
+    now = date.today()
     year = now.year
     month = now.month
     # recall of availability_days
@@ -104,9 +105,10 @@ def availability_entire_year():
 
         return days_available_1
     else:
-        days_available_2 = [datetime.date(year, month + 1, day) for day in availability_2]
-        days_available_1 = [datetime.date(year, month, day) for day in availability_1]
-        return days_available_1, days_available_2
+        days_available_2 = [date(year, month + 1, day) for day in availability_2]
+        days_available_1 = [date(year, month, day) for day in availability_1]
+
+        return days_available_1 + days_available_2
 
 
 def select_date():
@@ -115,7 +117,7 @@ def select_date():
     let the user choose one. If the entire year is booked it will show the available days  of January of the next year.
     If also January is completely booked it will print a message and returns 42
     '''
-    now = datetime.date.today()
+    now = date.today()
     # recall of availability_entire_year
     date_reader = availability_entire_year()
     dates_available = []
@@ -133,7 +135,7 @@ def select_date():
 
             controller = 0
             # this cycle is iterated until the
-            # user puts in input one of the available dates outputted
+            # user give as input one of the available dates previously given as output
             while controller == 0:
                 print('select one of the available vaccination date')
                 year = int(input('input the year'))
@@ -154,23 +156,23 @@ def select_date():
             return 42
 
     # this is the part of the function that works if there are available dates in the current year
-    print('this are the available vaccination date')
-    for date in date_reader:
-        print(date.strftime("%d/%m/%Y"))
-        dates_available.append(date.strftime("%d/%m/%Y"))
+    print('These are the available vaccination date')
+    for d in date_reader:
+        print(d.strftime("%d/%m/%Y"))
+        dates_available.append(d.strftime("%d/%m/%Y"))
     controller = 0
     # this cycle is iterated until the
     # user puts in input one of the available dates outputted
     while controller == 0:
-        print('select one of the availablevaccination date')
+        print('select one of the available vaccination dates')
         year = int(input('input the year '))
         month = int(input('input the month '))
         day = int(input('input the day '))
 
-        booking = datetime.date(year, month, day)
+        booking = date(year, month, day)
 
         if booking not in date_reader:
-            print('this date is not available  for the moment '
+            print('This date is not available'
                   'please select an available vaccination date')
 
         else:
