@@ -5,10 +5,17 @@ from datetime import date
 import pandas as pd
 
 """
-This module provides with functions that, working together,
+The module booking.py contains the functions that, working together,
 enables to choose and return a suitable date for the vaccination.
-There are 3 functions that are then grouped
-by calling the select_date function.
+There are 3 functions that work together once the select_date()
+function is called in adder.py.
+The function select_date(), through the use of availability_entire_year()
+shows the available days to book closest to the current day up
+to 2 months and let the user choose one. A date is considered
+available till a max of three people are booked.
+If the entire year is booked it will show the available days  of
+January of the next year. 
+
 """
 
 
