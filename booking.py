@@ -1,9 +1,3 @@
-import calendar
-import datetime
-from datetime import datetime
-from datetime import date
-import pandas as pd
-
 """
 The module booking.py contains the functions that, working together,
 enables to choose and return a suitable date for the vaccination.
@@ -14,9 +8,14 @@ shows the available days to book closest to the current day up
 to 2 months and let the user choose one. A date is considered
 available till a max of three people are booked.
 If the entire year is booked it will show the available days  of
-January of the next year. 
-
+January of the next year.
 """
+
+import calendar
+import datetime
+from datetime import datetime
+from datetime import date
+import pandas as pd
 
 
 def availability_days(y_ear, m_onth):
