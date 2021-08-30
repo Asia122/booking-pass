@@ -124,7 +124,7 @@ def add_element(nperson):
                 while not check_format:
                     # get the day of the first dose
                     firstdose = input(
-                        "Enter the date of the vaccination in the format gg/mm/yyyy "
+                        "Enter the past date of the vaccination in the format gg/mm/yyyy "
                     )
                     if check_date_before(firstdose):
                         check_format = True
