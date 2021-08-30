@@ -132,7 +132,8 @@ def select_date():
             print('this are the available vaccination days for january of the next year')
             for day in days_january_next_year:
                 print(datetime.date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
-
+                dates_available.append(datetime.date(now.year + 1, 1, day))
+                
             controller = 0
             # this cycle is iterated until the
             # user give as input one of the available dates previously given as output
