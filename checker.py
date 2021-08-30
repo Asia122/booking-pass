@@ -1,7 +1,3 @@
-""" System Module """
-from datetime import date, timedelta, datetime
-import pandas as pd
-
 """
 The module checker.py focuses on checking
 if a person has the GreenPass or not.
@@ -16,6 +12,10 @@ is present in the csv file people_vaccinated.
 If not, it means it doesn't even have the reservation
 for the vaccination.
 """
+
+
+from datetime import date, timedelta, datetime
+import pandas as pd
 
 
 def check_fiscalcode(nperson):
@@ -65,12 +65,15 @@ def check_green_pass(nperson):
         # if nperson_date + 15 days > today --> NO GreenPass
 
         if end_date > today:
-            return nperson + " " + "doesn't have the Green Pass yet."
+            result = nperson + " " + "doesn't have the Green Pass yet."
         else:
-            return nperson + " " + "has the Green Pass."
+            result = nperson + " " + "has the Green Pass."
 
     else:
-        result = "Sorry, but " + nperson + " "
-        result = result + "doesn't have the reservation for the vaccination."
+        if len(nperson) == 16:
+            result = "Sorry, but " + nperson + " "
+            result = result + "doesn't have the reservation for the vaccination."
+        else:
+            result = "Wrong fiscal code format"
 
-        return result
+    return result
