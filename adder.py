@@ -1,15 +1,13 @@
 """
-The adder module has a single
-function with the purpose
-of let doctors appending inside the dataset
-the personal information and date of vaccination
-of new people.
+The module adder.py has the purpose of let doctors append inside
+the dataset people_vaccinated.csv the personal information of
+new people.
 
-The input will be checked to
-see if it is already inside the database.
-
-It is necessary for the user to
-input a string that is not empty."
+Name, Surname, Gender, Date of birth, Place of Birth,
+fiscal code (if not given by the user, is automatically calculated
+calling the external function fiscal_code.py)  and finally
+the vaccination date, chosen by the doctor  or suggested by the
+software, are all stored in a new line of people_vaccoinated.csv.
 """
 
 from csv import writer

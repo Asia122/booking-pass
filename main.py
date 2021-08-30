@@ -1,4 +1,16 @@
-"""System module."""
+"""Once the username and a password are given,the software
+check if the username is present and the password inserted
+in is the corresponding one, if everything is correct  the
+program allows users to access different sections based on
+their role.
+
+Username, password and roles are registered in
+the database access_db.db. Only users whose role is admin
+can modify the access_db.db adding new users or modify the
+password or the role of the existing ones.
+
+Moreover he/she can visualize the list of all users.
+"""
 import pandas as pd
 from access_db import parse_args, save_new_username_correct
 from access_db import check_for_username_correct
