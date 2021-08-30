@@ -21,7 +21,6 @@ from booking import select_date
 
 
 def add_element(nperson, dataset):
-    # db = pd.DataFrame(pd.read_csv('people_vaccinated.csv'))
 
     if check_fiscalcode(nperson):
         print(

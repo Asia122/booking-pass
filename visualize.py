@@ -56,7 +56,8 @@ def print_info(answer, db_vaccine):
 
     # print the fiscal code, name and surname of the person and
     # date of the first shot of vaccine
-    if answer in db_vaccine["Fiscal Code"]:
+    list_fiscal_codes = db_vaccine["Fiscal Code"].tolist()
+    if answer in list_fiscal_codes:
         print(db_vaccine["Fiscal Code"].loc[db_vaccine["Fiscal Code"]
               .str.lower() == answer.lower()].values[0],
               "is the fiscal code of",
@@ -69,4 +70,4 @@ def print_info(answer, db_vaccine):
               .str.lower() == answer.lower()].values[0])
 
     else:
-        print("Fiscal Code not present in the database")
+        print("Fiscal Code not present in the database or format is invalid")
