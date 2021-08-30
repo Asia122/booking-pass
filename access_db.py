@@ -21,26 +21,40 @@ def parse_args():
 
     # add the argument p which takes the password as input,
     # which is always required
-    parser.add_argument('-p', help="the username password",
-                        required=True)
+    parser.add_argument("-p", help="the username password", required=True)
 
     # add the argument c which takes the username as input,
     # which is always required
-    parser.add_argument('-c', help="check username and password, return role"
-                        "(requires -p)", required=True)
+    parser.add_argument(
+        "-c",
+        help="check username and password, return role" "(requires -p)",
+        required=True,
+    )
 
     # add the argument l which allows to get the list of all users
-    parser.add_argument('-l', help="list all users requires -c and -p",
-                        action='store_true', required=False)
+    parser.add_argument(
+        "-l",
+        help="list all users requires -c and -p",
+        action="store_true",
+        required=False,
+    )
 
     # add the argument d which allows to get the list of all vaccinated people
-    parser.add_argument('-d', help="list vaccinated people requires -c and -p",
-                        action='store_true', required=False)
+    parser.add_argument(
+        "-d",
+        help="list vaccinated people requires -c and -p",
+        action="store_true",
+        required=False,
+    )
 
     # add the argument d which allows to get the personal info
     # of vaccinated people
-    parser.add_argument('-f', help="personal information requires -c and -p",
-                        action='store_true', required=False)
+    parser.add_argument(
+        "-f",
+        help="personal information requires -c and -p",
+        action="store_true",
+        required=False,
+    )
 
     return parser.parse_args()
 
@@ -53,22 +67,24 @@ def check_for_username_correct(username, password):
     password is correct.
     """
     # build connection with the database
-    with sqlite3.connect("db_password.db")as conn:
+    with sqlite3.connect("db_password.db") as conn:
         cursor = conn.cursor()
 
     # compute hash of password to check it
-    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    digest = hashlib.sha256(password.encode("utf-8")).hexdigest()
 
     # prepared statement
-    rows = cursor.execute("SELECT * FROM user WHERE username=? and password=?",
-                          (username, digest))
+    rows = cursor.execute(
+        "SELECT * FROM user WHERE username=? and password=?", (username, digest)
+    )
     conn.commit()
     results = rows.fetchall()
 
     # check if the search given results and assign the role to the variable
     if results:
-        role = cursor.execute("SELECT role FROM user_role WHERE username=?",
-                              (results[0][0],))
+        role = cursor.execute(
+            "SELECT role FROM user_role WHERE username=?", (results[0][0],)
+        )
 
     else:
         role = 0
@@ -85,17 +101,15 @@ def save_new_username_correct(username, password, role):
     """
 
     # build connection with the database
-    with sqlite3.connect("db_password.db")as conn:
+    with sqlite3.connect("db_password.db") as conn:
         cursor = conn.cursor()
 
     # compute hash of the password and store it in db
-    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    digest = hashlib.sha256(password.encode("utf-8")).hexdigest()
 
     # prepared statements to avoid sql injection
-    cursor.execute("INSERT OR REPLACE INTO user VALUES (?,?)",
-                   (username, digest))
-    cursor.execute("INSERT OR REPLACE INTO user_role VALUES (?,?)",
-                   (username, role))
+    cursor.execute("INSERT OR REPLACE INTO user VALUES (?,?)", (username, digest))
+    cursor.execute("INSERT OR REPLACE INTO user_role VALUES (?,?)", (username, role))
     conn.commit()
 
     # close the connection with the database
