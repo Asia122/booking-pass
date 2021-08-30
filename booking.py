@@ -101,7 +101,7 @@ def availability_entire_year():
     if availability_2 == 42 or month == 12:
         # if the next month is fully booked or the month we are analyzing is september
         # return only the availability of the month we are analyzing
-        days_available_1 = [datetime.date(year, month, day) for day in availability_1]
+        days_available_1 = [date(year, month, day) for day in availability_1]
 
         return days_available_1
     else:
@@ -131,8 +131,8 @@ def select_date():
         if days_january_next_year != 42:
             print('this are the available vaccination days for january of the next year')
             for day in days_january_next_year:
-                print(datetime.date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
-                dates_available.append(datetime.date(now.year + 1, 1, day))
+                print(date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
+                dates_available.append(date(now.year + 1, 1, day))
                 
             controller = 0
             # this cycle is iterated until the
@@ -142,7 +142,7 @@ def select_date():
                 year = int(input('input the year'))
                 month = int(input('input the month'))
                 day = int(input('input the day'))
-                booking = datetime.date(year, month, day)
+                booking = date(year, month, day)
                 if booking not in dates_available:
                     print('this date is not available for the moment '
                           'please select an available vaccination date')
