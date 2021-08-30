@@ -1,11 +1,10 @@
-"""System module."""
-import sqlite3
-
 """
 The module visualize.py contains the functions used to visualize
 data stored in the database password_db.db and in the dataset
 people_vaccinated.csv.
 """
+
+import sqlite3
 
 
 def print_all_users():
@@ -68,7 +67,9 @@ def print_info(answer, db_vaccine):
               "whose first dose date is",
               db_vaccine["Date First Shot"].loc[db_vaccine["Fiscal Code"]
               .str.lower() == answer.lower()].values[0])
-        return True
+        result = True
     else:
         print("Fiscal Code not present in the database or format is invalid")
-        return False
+        result = False
+
+    return result
