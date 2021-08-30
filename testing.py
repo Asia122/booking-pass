@@ -18,18 +18,18 @@ class Test(unittest.TestCase):
 
     def setUp(self):
 
-        self.T_fiscalcode = "MRTSAI99B52C957F"
-        self.F_fiscalcode = "mrtsai99b52c957f"
-        self.V_fiscalcode = ''
+        self.t_fiscalcode = "MRTSAI99B52C957F"
+        self.f_fiscalcode = "mrtsai99b52c957f"
+        self.v_fiscalcode = ''
         self.database = "people_vaccinated.csv"
-        self.A_username = 'Nicole00'
-        self.A_password = 'Lab2021'
-        self.R_password = 'DataAnalyticsMaster'
-        self.R_username = 'AndreaRocco'
-        self.D_password = 'Wudy'
-        self.D_username = 'RickyTrabu'
-        self.W_username = 'ciao'
-        self.W_password = 'hello'
+        self.a_username = 'Nicole00'
+        self.a_password = 'Lab2021'
+        self.r_password = 'DataAnalyticsMaster'
+        self.r_username = 'AndreaRocco'
+        self.d_password = 'Wudy'
+        self.d_username = 'RickyTrabu'
+        self.w_username = 'ciao'
+        self.w_password = 'hello'
         self.green_pass_fiscalcode = 'BNCMRC68E30A058X'
         self.wrong1_green_pass_fiscalcode = 'Alberto'
         self.wrong2_green_pass_fiscalcode = '10'
@@ -37,25 +37,26 @@ class Test(unittest.TestCase):
 
     def test_print_info(self):
         database = pd.DataFrame(pd.read_csv("../booking-pass/people_vaccinated.csv"))
-        self.assertTrue(print_info(self.T_fiscalcode, database))
-        self.assertFalse(print_info(self.F_fiscalcode, database))
+        self.assertTrue(print_info(self.t_fiscalcode, database))
+        self.assertFalse(print_info(self.f_fiscalcode, database))
 
     def test_check_for_username_correct(self):
 
-        self.assertEqual('admin', check_for_username_correct(self.A_username, self.A_password))
-        self.assertEqual('doctor', check_for_username_correct(self.D_username, self.D_password))
-        self.assertEqual('restaurant', check_for_username_correct(self.R_username, self.R_password))
-        self.assertEqual(0, check_for_username_correct(self.W_username, self.W_password))
+        self.assertEqual('admin', check_for_username_correct(self.a_username, self.a_password))
+        self.assertEqual('doctor', check_for_username_correct(self.d_username, self.d_password))
+        self.assertEqual('restaurant', check_for_username_correct(self.r_username, self.r_password))
+        self.assertEqual(0, check_for_username_correct(self.w_username, self.w_password))
 
     def test_add_element(self):
-        self.assertTrue(add_element(self.F_fiscalcode))
-        self.assertEqual('present', add_element(self.T_fiscalcode))
+        self.assertTrue(add_element(self.f_fiscalcode))
+        self.assertEqual('present', add_element(self.t_fiscalcode))
 
     def test_2_add_elemet(self):
-        self.assertTrue(add_element(self.V_fiscalcode))
+        self.assertTrue(add_element(self.v_fiscalcode))
 
     def test_check_green_pass(self):
-        self.assertEqual('MRTSAI99B52C957F has the Green Pass.', check_green_pass(self.T_fiscalcode))
+        self.assertEqual('MRTSAI99B52C957F has the Green Pass.',
+                         check_green_pass(self.t_fiscalcode))
         self.assertEqual("BNCMRC68E30A058X doesn't have the Green Pass yet.",
                          check_green_pass(self.green_pass_fiscalcode))
         self.assertEqual("Wrong fiscal code format",

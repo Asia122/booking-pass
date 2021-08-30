@@ -1,5 +1,3 @@
-import pandas as pd
-
 """
 The fiscal_code module has multiple functions
 with the purpose of calculating the Italian fiscal code
@@ -7,6 +5,8 @@ given name, surname, date of birth, gender, and place of birth.
 The input in the functions is not checked because
 it is checked in the part that calls the fiscal_code_calculator funciton.
 """
+
+import pandas as pd
 
 
 def fiscal_code_calculator(name, surname, dob, gender, pob):
