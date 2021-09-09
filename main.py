@@ -24,14 +24,26 @@ to make them work together in an organic way and improve
 the user experience.
 """
 
-args = parse_args()
+# assign the values returned by the function parse_args()
+# to a variable
+arguments = parse_args()
+
+# assign the arguments
+args = arguments[0]
+
+# get the username
+username = arguments[1]
+
+# get the password
+password = arguments[2]
+
 db = pd.DataFrame(pd.read_csv("people_vaccinated.csv"))
 
 if args.l:
     # check if the username is present and the passwordis correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    u_role = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(username, password)
 
     if u_role != 0:
 
@@ -47,7 +59,7 @@ elif args.d:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    u_role = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(username, password)
 
     if u_role != 0:
 
@@ -69,7 +81,7 @@ elif args.f:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    u_role = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(username, password)
 
     if u_role != 0:
 
@@ -90,7 +102,7 @@ else:
     # check if the username is present, the password is correct
     # using the imported function check_for_username_correct
     # if there is no match the function returns 0
-    u_role = check_for_username_correct(args.c, args.p)
+    u_role = check_for_username_correct(username, password)
 
     if u_role != 0:
 
@@ -128,8 +140,7 @@ else:
 
             elif choice == "n":
                 print("You can only add new users in this section," +
-                      " if you want to do something else try -l," +
-                      " -c username -p password")
+                      " if you want to do something else try -l")
 
             else:
                 print("Choice is not valid")

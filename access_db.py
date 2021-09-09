@@ -15,32 +15,46 @@ def parse_args():
     the command line when you run your program and interpret them according
     to the arguments you have added to your ArgumentParser object.
     """
-    parser = argparse.ArgumentParser()
 
-    # add the argument p which takes the password as input,
-    # which is always required
-    parser.add_argument('-p', help="the username password",
-                        required=True)
+    parser = argparse.ArgumentParser(description='This program will' +
+                                     ' check if the username and ' +
+                                     'password given as input ' +
+                                     'are registered inside our ' +
+                                     'user database and, depending on ' +
+                                     'the role (admin, doctor or ' +
+                                     'restaurant), it will allow to ' +
+                                     'access to different sections' +
+                                     'of the program. Username and ' +
+                                     'password are mandatory' +
+                                     'so please insert both of them' +
+                                     ' separated by a space ')
 
-    # add the argument c which takes the username as input,
-    # which is always required
-    parser.add_argument('-c', help="check username and password, return role"
-                        "(requires -p)", required=True)
+    group = parser.add_mutually_exclusive_group()
+
+    parser.add_argument("username", help="the username")
+    parser.add_argument("password", help="the password of the user")
 
     # add the argument l which allows to get the list of all users
-    parser.add_argument('-l', help="list all users requires -c and -p",
-                        action='store_true', required=False)
+    group.add_argument('-l', help='shows the list all users,' +
+                       ' you need to be an admin to access',
+                       action='store_true', required=False)
 
     # add the argument d which allows to get the list of all vaccinated people
-    parser.add_argument('-d', help="list vaccinated people requires -c and -p",
-                        action='store_true', required=False)
+    group.add_argument('-d', help='shows the list of vaccinated people, ' +
+                       'you need to be a doctor to access',
+                       action='store_true', required=False)
 
-    # add the argument d which allows to get the personal info
+    # add the argument f which allows to get the personal info
     # of vaccinated people
-    parser.add_argument('-f', help="personal information requires -c and -p",
+    group.add_argument('-f', help="shows the personal information " +
+                        ' of patients you need to be a doctor to access',
                         action='store_true', required=False)
 
-    return parser.parse_args()
+    args = parser.parse_args()
+    username = args.username
+    password = args.password
+
+    return args, username, password
 
 
 def check_for_username_correct(username, password):

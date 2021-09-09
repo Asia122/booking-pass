@@ -134,7 +134,7 @@ def add_element(nperson):
                 firstdose = select_date()
 
             # Open file in append mode
-            with open("people_vaccinated.csv", "a") as peopledata:
+            with open("people_vaccinated.csv", "a", newline='') as peopledata:
                 # Create a writer object from csv module
                 csv_writer = writer(peopledata)
                 # Add contents of list as last row in the csv file

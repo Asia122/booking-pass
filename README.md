@@ -14,7 +14,7 @@ The *database access_db.db* contains two tables: one named *user* containing use
 
 ### ***people_vaccinated.csv***
 
-The CSV file *people_vaccinated.csv contains the list of all vaccinated people. The variables are Fiscal Code, Name, Surname, Gender, Date of birth, Place of Birth and Date of the first shot. This file will be used by doctors to add new vaccinated patients and by restaurateurs to check if customers have the green pass.
+The CSV file contains the list of all people that have already booked the vaccination. The variables are Fiscal Code, Name, Surname, Gender, Date of birth, Place of Birth and Date of the first shot. This file will be used by doctors to add new patients that have booked the vaccination and by restaurateurs to check if customers have the green pass.
 
 ### ***registry_codes.csv***
 
@@ -81,18 +81,18 @@ You will automatically download the folder containing all the modules and the fi
 
 ## Functionalities
 
-The program, based on the arguments given, username and password, allows access to different sections. The mandatory arguments are -c and -p are mandatory arguments that take as input the username (-c) and password (-p). Username and password refer to a precise user stored in the database *access_db.db* who, depending on the role, can do various things. Indeed -l, -d and -f is not mandatory and allow only data visualization.
+The program, based on the arguments given, username and password, allows access to different sections. The arguments "username" and "password" are the positional arguments. Username and password refer to a precise user stored in the database *access_db.db* who, depending on the role, can do various things. Indeed -l, -d and -f are optional arguments and allow only data visualization.
 
 Now let’s see what users can do based on their role.
 
 ### **Admin**
 
-The admin, using the arguments -c and -p, can add new users to the database *access_db.db.*
+The admin, using the arguments positional arguments, can add new users to the database *access_db.db.*
 
 If you access the folder booking-pass from your prompt and you write:
 
 ```bash
-python main.py -c Nicole00 -p Lab2021
+python main.py Nicole00 Lab2021
 ```
 
 The program will allow you to add a new user to the database or modify an existing one as follows:
@@ -105,12 +105,12 @@ Tell me the password: Git2021
 Tell me the role (admin, doctor or restaurant): doctor
 ```
 
-Using the arguments -l, -c and -p the admin can visualize all the users of the database *access_db.db* and their role*.*
+Using the positional arguments and the optional argument -l, the admin can visualize all the users of the database *access_db.db* and their role*.*
 
 This time if you write on your prompt:
 
 ```bash
-python main.py -l  -c Nicole00 -p Lab2021
+python main.py Nicole00 Lab2021 -l
 ```
 
 You will get the following output:
@@ -129,14 +129,14 @@ Test_doctor doctor
 
 ### Doctor
 
-The doctor, using the arguments -c and -p, can introduce data of its patients and get to know if they have already received their first vaccination shot. If not the doctor can check the available dates and find an appointment for its patients. He can book the vaccine for a maximum of 3 people a day.
+The doctor, given the positional arguments, can introduce data of its patients and get to know if they have already received their first vaccination shot. If not the doctor can check the available dates and find an appointment for its patients. He can book the vaccine for a maximum of 3 people a day.
 
 Let’s see how it works in practice.
 
 Write in your prompt:
 
 ```bash
-python main.py -c DTest2021 -p h-farm
+python main.py DTest2021 h-farm
 ```
 
 The program will ask you to insert your fiscal code or to give the data needed to calculate it.
@@ -172,10 +172,10 @@ input the day 27
 You successfully registered Paolo Rossi 's vaccination date!
 ```
 
-Now use the arguments -d, -c and -p.
+Now use the positional arguments and the optional argument -d.
 
 ```bash
-python main.py -d -c DTest2021 -p h-farm
+python main.py DTest2021 h-farm -d
 ```
 
 The users registered as doctors can visualize all the data contained in the dataset people_vaccinated.csv.
@@ -242,10 +242,10 @@ Now you can see by yourself if fiscal code is present in our database manually
 56  RSSPLA64R15G224Q       Paolo       Rossi      M    15/10/1964                         Padova      27/09/2021
 ```
 
-Finally, use the arguments -f, -c and -p:
+Finally, use the positional arguments and the optional argument -f:
 
 ```bash
-python main.py -f -c DTest2021 -p h-farm
+python main.py DTest2021 h-farm -f
 ```
 
 The users registered as doctors can visualize the patients' contained in the dataset *people_vaccinated.csv* given their fiscal code.
@@ -257,10 +257,10 @@ RSSPLA64R15G224Q is the fiscal code of Paolo Rossi whose first dose date is 25/0
 
 ### Restaurant
 
-The restaurant using the arguments -c and -p can check if the client has the green pass or not.
+The restaurant using the positional arguments can check if the client has the green pass or not.
 
 ```bash
-python main.py -c Test_restaurant -p Pippo
+python main.py Test_restaurant Pippo
 ```
 
 The program will ask the user restaurant to give the fiscal code of the client as input and will return if it has the green pass or not as follows. 

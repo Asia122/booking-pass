@@ -125,10 +125,8 @@ def availability_entire_year():
 
         return days_available_1
 
-    days_available_2 = [date(year, month + 1, day)
-                        for day in availability_2]
-    days_available_1 = [date(year, month, day)
-                        for day in availability_1]
+    days_available_2 = [date(year, month + 1, day) for day in availability_2]
+    days_available_1 = [date(year, month, day) for day in availability_1]
 
     return days_available_1 + days_available_2
 
@@ -156,8 +154,10 @@ def select_date():
         days_january_next_year = availability_days(now.year + 1, 1)
         # checks for january of the next year
         if days_january_next_year != 42:
-            print("this are the available vaccination"
-                  " days for january of the next year")
+            print(
+                "this are the available vaccination"
+                " days for january of the next year"
+            )
             for day in days_january_next_year:
                 print(date(now.year + 1, 1, day).strftime("%d/%m/%Y"))
                 dates_available.append(date(now.year + 1, 1, day))
@@ -168,10 +168,18 @@ def select_date():
             # output
             while controller == 0:
                 print("select one of the available vaccination date")
-                year = int(input("input the year"))
-                month = int(input("input the month"))
-                day = int(input("input the day"))
-                booking = date(year, month, day)
+                correct = False
+                while not correct:
+
+                    try:
+                        year = int(input("input the year"))
+                        month = int(input("input the month"))
+                        day = int(input("input the day"))
+                        booking = date(year, month, day)
+                        correct = True
+                    except ValueError:
+                        print("use a correct date format")
+
                 if booking not in dates_available:
                     print(
                         "this date is not available for the moment "
@@ -185,7 +193,8 @@ def select_date():
         print(
             "unfortunately also january of the next year"
             " has been booked completely "
-            "please come back after christmas vacation")
+            "please come back after christmas vacation"
+        )
         return 42
 
     # this is the part of the function that works if there are available dates
@@ -199,11 +208,17 @@ def select_date():
     # user puts in input one of the available dates outputted
     while controller == 0:
         print("select one of the available vaccination dates")
-        year = int(input("input the year "))
-        month = int(input("input the month "))
-        day = int(input("input the day "))
+        correct = False
+        while not correct:
 
-        booking = date(year, month, day)
+            try:
+                year = int(input("input the year"))
+                month = int(input("input the month"))
+                day = int(input("input the day"))
+                booking = date(year, month, day)
+                correct = True
+            except ValueError:
+                print("use a correct date format")
 
         if booking not in date_reader:
             print(
